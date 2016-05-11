@@ -1,6 +1,7 @@
 # Building & developing
 
 **TL;DR:**
+
 Clone Calamares from GitHub and `cd` into the calamares directory, then:
 ```
 $ git submodule init
