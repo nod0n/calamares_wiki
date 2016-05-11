@@ -34,7 +34,7 @@ The Calamares team maintains a quick and dirty deployment script, called uncerim
 
 This tool allows everyone to test the current state in any branch in the Calamares GitHub repository without having to manually build and/or repackage Calamares. It relies on an already existing and installed Calamares instance with all its dependencies, making it suitable for testing on a running Live system.
 
-**WARNING**: `deploycala.py` writes into `/usr` and `/etc` with impunity and no regard for package managers. Its purpose is to quickly set up a Calamares development and testing environment on a live system immediately after booting from a live medium. Keeping a long term working system is not a design goal. **Don't EVER run `deploycala.py` on a non-live system.**
+**WARNING**: `deploycala.py` writes into `/usr` and `/etc` with impunity and no regard for package managers. Its only purpose is to quickly set up a Calamares testing and debugging environment on a live system immediately after booting from a live medium.<br>Keeping a long term working system is **not** a design goal.<br>Setting up a permanent development environment is **not** a design goal.<br>**Don't EVER run `deploycala.py` on a non-live system.**
 
 The tool is permanently hosted on ``calamares.io`` for convenience. It is very easy to get it up and running on a live system:
 ```
@@ -43,7 +43,7 @@ $ chmod +x deploycala.py
 $ ./deploycala.py
 ```
 
-## `deploycala.py` documentation
+## Script usage
 
 See
 ```
