@@ -24,7 +24,7 @@ $ sudo gdb ./calamares
 ```
 When running Calamares with the `-d` parameter, it will also pick up a `settings.conf` placed in the `build` directory (if present), and it will show the debug information interface in the bottom left area of the main window.
 
-* [Design Notes](/Design-Notes)
+* [Design Notes](Design-Notes)
 
 ## Supported variables for CMake
 
