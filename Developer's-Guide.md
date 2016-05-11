@@ -70,8 +70,9 @@ $ ./deploycala.py -ni some_branch
 * It it noninteractive only as long as `sudo` is configured as `NOPASSWD` for the current user.
 
 #### The ugly
-It's a Python script that happily writes into / and overwrites files owned by the package manager. It's been used successfully on Netrunner Rolling, Manjaro KDE and KaOS live systems to test changes immediately after pushing. Its purpose is **not** deployment for the end-user, but shortening a developer's code-build-push-test iteration. 
-It is released in the hope that it might make your system integration tasks easier as well.
+* It's a Python script that happily writes into / and overwrites files owned by the package manager. It's been used successfully on Netrunner Rolling, Manjaro KDE and KaOS live systems to test changes immediately after pushing. Its purpose is **not** deployment for the end-user, but shortening a developer's code-build-push-test iteration.
+* It **will** happily and mercilessly break your system in various ways if you try to use it in any way beyond what's outlined above.
+* It is released in the hope that it might make your system integration tasks easier as well, but **without any warranty**.
 
 # Additional developer documentation
 
