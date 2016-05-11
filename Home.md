@@ -32,8 +32,8 @@ When running Calamares with the `-d` parameter, it will also pick up a `settings
 # Packaging and deployment
 
 * Configuring Calamares
-* Setting up modules
-* Setting up branding
+* [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
+* [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
 
 _Distro-specific deployment information may be added in pages linked from here, and it must clearly be declared as such._
 
