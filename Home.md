@@ -28,7 +28,7 @@ _Distro-specific deployment information may be added in pages linked from here, 
 
 # Support
 
-* FAQ
+* [FAQ](FAQ)
 * [Bug Reports](https://calamares.io/bugs/)
 * [Continuous Integration](https://calamares.io/ci/)
 * [IRC](irc://irc.freenode.net/calamares) - #calamares on Freenode
