@@ -1,6 +1,4 @@
-# Building & developing
-
-**TL;DR:**
+# How to build Calamares
 
 Clone Calamares from GitHub and `cd` into the calamares directory, then:
 ```
