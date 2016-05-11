@@ -67,7 +67,7 @@ $ ./deploycala.py -ni some_branch
 #### The bad
 * It only supports yaourt and pacman for dependency install right now, and is tested to work on Netrunner Rolling, Manjaro KDE and KaOS. Pull requests for other package managers are accepted.
 * It backs up `/usr/share/calamares` and `/etc/calamares` as a whole, so inevitably upstream changes in configuration and/or branding format might break things. Caveat emptor.
-* It it noninteractive only as long as `sudo` is configured as `NOPASSWD` for the current user.
+* It is noninteractive only as long as `sudo` is configured as `NOPASSWD` for the current user.
 
 #### The ugly
 * It's a Python script that happily writes into / and overwrites files owned by the package manager. It's been used successfully on Netrunner Rolling, Manjaro KDE and KaOS live systems to test changes immediately after pushing. Its purpose is **not** deployment for the end-user, but shortening a developer's code-build-push-test iteration.
