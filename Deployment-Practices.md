@@ -4,7 +4,7 @@ There is critical issue involving KPMcore and e2fsprogs which breaks partitionin
 
 Calamares uses KPMcore for partitioning, which in turn queries certain programs in the e2fsprogs package to support filesystem management operations with ext2, ext3 and ext4.
 
-Unfortunately, dumpe2fs from e2fsprogs 1.42.12 can segfault when called with no arguments. This is not expected behavior, and it causes the Calamares partition management component to report filesystem resize operations as unsupported. Because of this, Calamares disables Alongside install support.
+Unfortunately, `dumpe2fs` from e2fsprogs 1.42.12 can segfault when called with no arguments. This is not expected behavior, and it causes the Calamares partition management component to report filesystem resize operations as unsupported. Because of this, Calamares disables Alongside install support.
 
 The bug has already been reported upstream, and a fix is available.
 
