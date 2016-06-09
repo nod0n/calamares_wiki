@@ -16,8 +16,6 @@ As of version 1.43 (including 1.43.1 and possibly later), e2fsprogs ships with d
 
 To work around this issue, **please update your e2fsprogs 1.43 series package to ship a `mke2fs.conf` file without the features `64bit` and `metadata_csum`**, as it was in 1.42.13 and earlier.
 
-This issue will also affect any other installer or even a manual install, unless the application or the user explicitly disables those flags.
-
 Good:
 ```
 ext4 = {
@@ -28,6 +26,8 @@ Bad:
 ext4 = {
         features = has_journal,extent,huge_file,flex_bg,64bit,metadata_csum,dir_nlink,extra_isize
 ```
+
+This issue will also affect any other installer or even a manual install, unless the application or the user explicitly disables those flags.
 
 # systemd automount generators
 
