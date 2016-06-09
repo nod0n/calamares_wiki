@@ -1,4 +1,4 @@
-# e2fsprogs
+# e2fsprogs 1.42.12 dumpe2fs segfault
 
 There is critical issue involving KPMcore and e2fsprogs which breaks partitioning.
 
@@ -9,6 +9,23 @@ Unfortunately, `dumpe2fs` from e2fsprogs 1.42.12 can segfault when called with n
 The bug has already been reported upstream, and a fix is available.
 
 The solution is to **package and deploy e2fsprogs 1.42.13 or later**.
+
+# e2fsprogs 1.43 ext4 default features
+
+As of version 1.43 (including 1.43.1 and possibly later), e2fsprogs ships with different default `mke2fs` features for ext4 filesystems, compared to 1.42.13 and earlier. These changes include the features `64bit` and `metadata_csum` being enabled in `/etc/mke2fs.conf`. This is not a problem on its own, however some bootloaders refuse to boot from a filesystem which was created with those flags enabled (see [this blog post by Rohan Garg](https://kshadeslayer.wordpress.com/2016/04/11/my-filesystem-has-too-many-bits/) for more information).
+
+To work around this issue, please update your e2fsprogs 1.43 series package to ship a `mke2fs.conf` file without those two features, as it was in 1.42.13 and earlier.
+
+Good:
+```
+	ext4 = {
+		features = has_journal,extent,huge_file,flex_bg,uninit_bg,dir_nlink,extra_isize
+```
+Bad:
+```
+        ext4 = {
+                features = has_journal,extent,huge_file,flex_bg,64bit,metadata_csum,dir_nlink,extra_isize
+```
 
 # systemd automount generators
 
