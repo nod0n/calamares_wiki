@@ -18,13 +18,13 @@ To work around this issue, **please update your e2fsprogs 1.43 series package to
 
 Good:
 ```
-	ext4 = {
-		features = has_journal,extent,huge_file,flex_bg,uninit_bg,dir_nlink,extra_isize
+ext4 = {
+        features = has_journal,extent,huge_file,flex_bg,uninit_bg,dir_nlink,extra_isize
 ```
 Bad:
 ```
-        ext4 = {
-                features = has_journal,extent,huge_file,flex_bg,64bit,metadata_csum,dir_nlink,extra_isize
+ext4 = {
+        features = has_journal,extent,huge_file,flex_bg,64bit,metadata_csum,dir_nlink,extra_isize
 ```
 
 # systemd automount generators
