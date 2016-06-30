@@ -1,4 +1,6 @@
-# [LUKS deployment](LUKS)
+# LUKS deployment
+
+See article: [LUKS deployment advice](Deployment-Practices/LUKS).
 
 # e2fsprogs 1.42.12 dumpe2fs segfault
 
