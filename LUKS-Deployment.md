@@ -1,3 +1,6 @@
+
+**TL;DR:** if your system has `mkinitcpio`, deploy the `mkinitcpio-openswap` package to your rootfs image, add `luksbootkeyfile` and `luksopenswaphookcfg` to `settings.conf` and you're done. Otherwise, read on because there's some more deployment work to do on your end.
+
 # Dependencies
 
 In order for the full disk encryption feature to work, the following is needed on the live system:
@@ -33,7 +36,3 @@ If you have such a system, simply **add the `luksopenswaphookcfg` module** to yo
 If your system does not use `mkinitcpio`, you will need to roll out a custom solution. In this case, the Calamares team would be happy to assist and accept pull requests to merge such a solution upsteam (feel free to reach out to us in #calamares on irc.freenode.net). Generally, what you need to provide is:
 1) a hook or script for your initramfs builder mechanism, with the goal of LUKS-unlocking inside the initramfs not just the root partition but also the swap partition, using the keyfile that `luksbootkeyfile` generated and that you had previously told your initramfs builder to bake into the initramfs (this component is `mkinitcpio-openswap` in the `mkinitcpio` world);
 2) a Calamares module, likely written in Python, or possibly even just a patch for the existing `luksopenswaphookcfg` module, that will write the relevant configuration file which tells your (1) initramfs hook or script where to find the swap partition, how to call it once it's unlocked, and how to unlock it.
-
-
-
-**TL;DR:** if your system has `mkinitcpio`, deploy the `mkinitcpio-openswap` package to your rootfs image, add `luksbootkeyfile` and `luksopenswaphookcfg` to `settings.conf` and you're done. Otherwise, read up ↑ because there's some minor porting to do.
