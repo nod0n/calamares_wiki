@@ -34,7 +34,9 @@ Calamares ships the `luksopenswaphookcfg` module, whose goal is to write the con
 If you have such a system, simply **add the `luksopenswaphookcfg` module** to your main `exec` phase in `settings.conf`, after `mount` but before `initcpiocfg`/`initcpio`. In this case, no further action is needed (besides making sure that `mkinitcpio-openswap` is in fact available on your target rootfs image).
 
 If your system does not use `mkinitcpio`, you will need to roll out a custom solution. In this case, the Calamares team would be happy to assist and accept pull requests to merge such a solution upsteam (feel free to reach out to us in #calamares on irc.freenode.net). Generally, what you need to provide is:
-1) a hook or script for your initramfs builder mechanism, with the goal of LUKS-unlocking inside the initramfs not just the root partition but also the swap partition, using the keyfile that `luksbootkeyfile` generated and that you had previously told your initramfs builder to bake into the initramfs (this component is `mkinitcpio-openswap` in the `mkinitcpio` world);
-2) a Calamares module, likely written in Python, or possibly even just a patch for the existing `luksopenswaphookcfg` module, that will write the relevant configuration file which tells your (1) initramfs hook or script where to find the swap partition, how to call it once it's unlocked, and how to unlock it.
+
+1. a hook or script for your initramfs builder mechanism, with the goal of LUKS-unlocking inside the initramfs not just the root partition but also the swap partition, using the keyfile that `luksbootkeyfile` generated and that you had previously told your initramfs builder to bake into the initramfs (this component is `mkinitcpio-openswap` in the `mkinitcpio` world);
+
+2. a Calamares module, likely written in Python, or possibly even just a patch for the existing `luksopenswaphookcfg` module, that will write the relevant configuration file which tells your (1) initramfs hook or script where to find the swap partition, how to call it once it's unlocked, and how to unlock it.
 
 See [Swap encryption on Arch Wiki](https://wiki.archlinux.org/index.php/Dm-crypt/Swap_encryption#mkinitcpio_hook) for more information on early swap partition unlocking techniques.
