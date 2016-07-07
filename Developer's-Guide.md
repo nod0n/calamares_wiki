@@ -65,7 +65,7 @@ $ ./deploycala.py -ni some_branch
 * It will also set up `sudo-gdb`, Qt Creator and some other IDE configuration files.
 
 #### The bad
-* It only supports yaourt and pacman for dependency install right now, and is tested to work on Netrunner Rolling, Manjaro KDE and KaOS. Pull requests for other package managers are accepted.
+* It only supports yaourt and pacman for dependency install right now, and is tested to work on Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS. Pull requests for other package managers are accepted.
 * It backs up `/usr/share/calamares` and `/etc/calamares` as a whole, so inevitably upstream changes in configuration and/or branding format might break things. Caveat emptor.
 * It is noninteractive only as long as `sudo` is configured as `NOPASSWD` for the current user.
 
