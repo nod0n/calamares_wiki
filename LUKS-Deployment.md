@@ -4,14 +4,14 @@
 # Dependencies
 
 In order for the full disk encryption feature to work, the following is needed on the live system:
-* Calamares 2.3 or later;
+* Calamares 2.3 or later (depending on your initramfs generator, a more recent version may be required, see the detailed instructions);
 * KPMcore 2.2 or later;
 * `cryptsetup` 1.7-ish (1.7.2 known to work);
 * GRUB 2 (2.02-beta2 known to work) - see warning below.
 
 Additionally, the following must be present inside the image that ends up as your rootfs:
-* an initramfs management solution, like `mkinitcpio`;
-* in order to support resume from suspend-to-disk with encrypted swap, a custom initramfs hook that will unlock the swap partition early, like [`mkinitcpio-openswap`](https://aur.archlinux.org/packages/mkinitcpio-openswap/).
+* an initramfs management solution, like `mkinitcpio` (see the detailed instructions for a list of currently supported ones);
+* in order to support resume from suspend-to-disk with encrypted swap, a custom initramfs hook that will unlock the swap partition early, like [`mkinitcpio-openswap`](https://aur.archlinux.org/packages/mkinitcpio-openswap/) (unless this is handled directly by your initramfs management solution).
 
 **WARNING:** while the Calamares bootloader module supports systemd-boot (formerly gummiboot), it does not support systemd-boot with the full disk encryption feature. Unlike GRUB 2, systemd-boot cannot perform boot loader encryption (i.e. early disk unlocking on boot loader startup), making *full* disk encryption impossible and potentially allowing for an additional attack vector. Some distributions report that LUKS installs work even with systemd-boot, and this is fine, but this approach requires additional deployment effort and may result in a less secure system. For this reason, the Calamares team does not recommend it.
 
