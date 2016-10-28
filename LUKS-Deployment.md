@@ -44,12 +44,17 @@ operations:
 ```
 * unlocking swap on resume is **not** supported yet.
 
-## `dracut` (Fedora, OpenSUSE)
+## `dracut` (e.g., Fedora, OpenSUSE)
 
 If your system has the `dracut` initramfs management system:
 
 * use Calamares 2.4.3 or later,
-* TODO: write instructions
+* uncomment the `luksbootkeyfile` and `dracutlukscfg` modules in `settings.conf`.
+
+Caveats:
+* We were unable to test resuming from encrypted swap because resuming from hibernation did not even work for us in the unencrypted case. There should be no special hook (such as `mkinitcpio-openswap`) needed with `dracut`, and we already write the required configuration setting, but it is currently **not** working for us because resuming was just generally broken in our testing.
+* With older versions of `systemd`, there may be issues with multiple encrypted partitions (i.e., if you use manual partitioning and create separate partitions, e.g., for `/` and `/home`). We know that `systemd` 226 does the right thing (as do the newer versions that Fedora ships), whereas `systemd` 216 somehow interprets the `rd.luks.uuid` parameters (intended only for `dracut`) for itself (contrary to what the documentation states). We have not tested intermediate versions. The result is that with such old `systemd` versions, the partitions beyond `/` (e.g., the `/home` partition) are not automatically unlocked using the keyfile and you eventually get prompted for a passphrase. This is fixed in more recent versions of `systemd` (at least 226 or later), so upgrading is strongly recommended.
+* You may also be running into issues (especially, but not necessarily, with multiple encrypted partitions) if you use the `hostonly="no"` setting. We tried hard to support this mode, and it worked in our tests, but the `hostonly="no"` mode is not designed by the `dracut` developers to support system-specific configuration (such as `/etc/crypttab`), so we are actually working around the intended purpose of that mode. So use it at your own risk.
 
 ## Other initramfs management systems
 
