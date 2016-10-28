@@ -18,13 +18,20 @@ Check whether you have all the dependencies listed above (as well as all the usu
 
 ## `mkinitcpio` (e.g., Arch Linux)
 
-**TL;DR:** if your system has `mkinitcpio`, deploy the `mkinitcpio-openswap` package to your rootfs image, add `luksbootkeyfile` and `luksopenswaphookcfg` to `settings.conf` and you're done.
+If your system has `mkinitcpio`:
+
+* deploy the `mkinitcpio-openswap` package to your rootfs image,
+* uncomment the `luksbootkeyfile` and `luksopenswaphookcfg` modules in `settings.conf`.
 
 ## `mkinitramfs` from `initramfs-tools` (Debian and derivatives)
+
+If your system has `mkinitramfs` from the Debian `initramfs-tools`:
 
 TODO: write
 
 ## `dracut` (Fedora, OpenSUSE)
+
+If your system has the `dracut` initramfs management system:
 
 TODO: write
 
