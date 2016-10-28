@@ -18,7 +18,7 @@ Check whether you have all the dependencies listed above (as well as all the usu
 
 ## `mkinitcpio` (e.g., Arch Linux)
 
-**TL;DR:** if your system has `mkinitcpio`, deploy the `mkinitcpio-openswap` package to your rootfs image, add `luksbootkeyfile` and `luksopenswaphookcfg` to `settings.conf` and you're done. Otherwise, read on because there's some more deployment work to do on your end.
+**TL;DR:** if your system has `mkinitcpio`, deploy the `mkinitcpio-openswap` package to your rootfs image, add `luksbootkeyfile` and `luksopenswaphookcfg` to `settings.conf` and you're done.
 
 ## `mkinitramfs` from `initramfs-tools` (Debian and derivatives)
 
@@ -30,9 +30,11 @@ TODO: write
 
 ## Other initramfs management systems
 
-Be sure to **add the `luksbootkeyfile` module** to your main `exec` phase in `settings.conf`, after `mount` but before `initcpiocfg`/`initcpio` (or whatever other custom module you might be using to set up your initramfs configuration and build the image).
+Unfortunately, if you are not using one of the above, already supported initramfs management systems, there is some more deployment work to do on your end. You will probably want to read the technical details below, but the basic steps are:
 
-TODO: write
+* Be sure to **add the `luksbootkeyfile` module**, which is common to all initramfs management systems, to your main `exec` phase in `settings.conf`, after `mount` but before whatever module you are using to set up your initramfs configuration and build the image.
+* You will need to configure your initramfs generator to include the keyfile `/crypto_keyfile.bin` (written by the above) in the initramfs. You may also have to explicitly tell it to enable LUKS support and/or to include `/etc/crypttab`. (See the `mkinitcpiocfg`, `initramfscfg` and `dracutlukscfg` modules for examples of how this is done in different initramfs management systems.)
+* For resuming from an encrypted swap partition to work, you will probably need a hook such as `mkinitcpio-openswap` and to enable it in the configuration (as the `luksopenswaphookcfg` module does for `mkinitcpio-openswap`). This is highly dependent on the individual initramfs management system, so please refer to its documentation.
 
 # Technical details about full disk encryption support in Calamares
 
