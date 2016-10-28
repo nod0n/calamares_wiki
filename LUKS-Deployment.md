@@ -20,6 +20,7 @@ Check whether you have all the dependencies listed above (as well as all the usu
 
 If your system has `mkinitcpio`:
 
+* use Calamares 2.3 or later,
 * deploy the `mkinitcpio-openswap` package to your rootfs image,
 * uncomment the `luksbootkeyfile` and `luksopenswaphookcfg` modules in `settings.conf`.
 
@@ -27,13 +28,15 @@ If your system has `mkinitcpio`:
 
 If your system has `mkinitramfs` from the Debian `initramfs-tools`:
 
-TODO: write
+* use Calamares 2.4.3 or later,
+* TODO: write instructions
 
 ## `dracut` (Fedora, OpenSUSE)
 
 If your system has the `dracut` initramfs management system:
 
-TODO: write
+* use Calamares 2.4.3 or later,
+* TODO: write instructions
 
 ## Other initramfs management systems
 
