@@ -24,12 +24,25 @@ If your system has `mkinitcpio`:
 * deploy the `mkinitcpio-openswap` package to your rootfs image,
 * uncomment the `luksbootkeyfile` and `luksopenswaphookcfg` modules in `settings.conf`.
 
-## `mkinitramfs` from `initramfs-tools` (Debian and derivatives)
+## `update-initramfs` from `initramfs-tools` (Debian and derivatives)
 
-If your system has `mkinitramfs` from the Debian `initramfs-tools`:
+If your system has `update-initramfs` from the Debian `initramfs-tools`:
 
 * use Calamares 2.4.3 or later,
-* TODO: write instructions
+* add the `initramfscfg` module to `settings.conf` (after `mount`, but before `initramfs`),
+* in `fstab.conf`, change the `crypttabOptions` line as documented in the comments in the file (the `initramfs-tools` which otherwise completely ignore the keyfile), i.e., to:
+```yaml
+crypttabOptions: luks,keyscript=/bin/cat
+```
+* in Debian live-based distros, configure the `packages` module to remove `^live-*` packages so that `update-initramfs` can run properly, otherwise the initramfs hook will never run. The following packages.conf should suffice:
+```yaml
+backend: apt
+
+operations:
+    - remove:
+        - '^live-*'
+```
+* unlocking swap on resume is **not** supported yet.
 
 ## `dracut` (Fedora, OpenSUSE)
 
