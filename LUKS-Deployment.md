@@ -108,4 +108,9 @@ Note that this module does not currently handle swap unlocking on resume. It cou
 
 * Used with: `dracut`
 
-TODO: document
+This module handles the pre-configuration of the `dracut` tool (which is then actually run in the `dracut` module) for LUKS full disk encryption. When LUKS full disk encryption is enabled, this module will install a `/etc/dracut.conf.d/calamares-luks.conf` file with the following configuration settings:
+* `install_items+=" /etc/crypttab /crypto_keyfile.bin "`
+  * forces including `/etc/crypttab` in the initramfs even if `hostonly="no"`. If `hostonly="yes"` (the default), `dracut` automatically installs a filtered version of `/etc/crypttab` with exactly the devices it needs, and ignores the `install_items` entry for it. But if `hostonly="no"`, `dracut` does not install any host-specific configuration that was not explicitly requested to be included. (In that case, the entire file is included, but it should not hurt.)
+  * includes the keyfile `/crypto_keyfile.bin` that was written by the `luksbootkeyfile` module in the initramfs.
+* `add_device+=" /dev/disk/by-uuid/%1 "` (where `%1` is the UUID of the encrypted swap partition)
+  * unlocks the swap device in the initramfs so that resuming from it should theoretically work. Unfortunately, we were unable to test this because resuming did **not** work for us, even in the unencrypted case.
