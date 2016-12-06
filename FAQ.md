@@ -1,5 +1,5 @@
 ### How to launch Calamares with custom settings?
-For most distributions, launching Calamares from the provided .desktop file is sufficient.  When that is not the case, for example, you want to launch from a custom application or want to use a custom command line instead of the default ```Exec=pkexec /usr/bin/calamares```.
+For most distributions, launching Calamares from the provided .desktop file is sufficient.  When that is not the case, for example, you want to launch from a custom application or want to use a custom command line instead of the default ```Exec=pkexec /usr/bin/calamares``` you can create a script to use instead.
 
 An example of such a script:
 
