@@ -29,6 +29,7 @@ If your system has `mkinitcpio`:
 If your system has `update-initramfs` from the Debian `initramfs-tools`:
 
 * use Calamares 2.4.3 or later,
+* uncomment the `luksbootkeyfile` module in `settings.conf`,
 * add the `initramfscfg` module to `settings.conf` (after `mount`, but before `initramfs`),
 * in `fstab.conf`, change the `crypttabOptions` line as documented in the comments in the file (the `initramfs-tools` will otherwise completely ignore the keyfile), i.e., to:
 ```yaml
