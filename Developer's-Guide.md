@@ -6,7 +6,7 @@ $ git submodule init
 $ git submodule update
 $ mkdir build
 $ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_USE_QT_SYS_PATHS=1 -DWITH_PYTHONQT=ON ..
 $ make
 ```
 
