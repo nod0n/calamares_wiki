@@ -80,4 +80,4 @@ $ ./deploycala.py -ni some_branch
 * [Design Notes](Design-Notes)
 * [HACKING file](https://github.com/calamares/calamares/blob/master/HACKING.md) - kept in master, includes code style guidelines, best practices, etc.
 * [astyle configuration](https://github.com/calamares/calamares/tree/master/hacking)
-
+* [RELEASE instructions](https://github.com/calamares/calamares/blob/master/hacking/RELEASE.md)
