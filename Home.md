@@ -1,33 +1,42 @@
-# How to build Calamares
+# Calamares
 
-Clone Calamares from GitHub and `cd` into the calamares directory, then:
-```
-$ git submodule init
-$ git submodule update
-$ mkdir build
-$ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug ..
-$ make
-```
+> [Calamares](https://calamares.io/) is the universal installer framework. 
+> This wiki is for *developers* working on Calamares, and for *deployers*
+> using Calamares as a framework / application for installing a Linux system.
+> There is also generic *user* documentation that applies to installing-your-
+> system, which might be used by a distro as a basis for their own installer
+> documentation.
 
-* [Developer's Guide](Developer's-Guide)
-
-# Packaging and deployment
-
-* [Configuring Calamares](Configuring-Calamares)
-* [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md) (in master, TODO: move to wiki)
-* [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md) (in master, TODO: move to wiki)
-* [Deployment Practices](Deployment-Practices)
-
-_Distro-specific deployment information may be added in pages linked from here, and it must clearly be declared as such._
-
-# Localization
-
-* You can help by [translating Calamares into your own language](https://www.transifex.com/calamares/calamares/)!
-
-# Support
+## Support
 
 * [FAQ](FAQ)
 * [Bug Reports](https://calamares.io/bugs/)
 * [Continuous Integration](https://calamares.io/ci/)
 * [IRC](irc://irc.freenode.net/calamares) - #calamares on Freenode
+
+## How to Help
+
+* Send good [Bug Reports](https://calamares.io/bugs/)
+* Contribute [Translations](https://www.transifex.com/calamares/calamares/)
+* Contribute [Code](https://github.com/calamares/calamares/)
+* Contribute [Documentation](https://github.com/calamares/calamares/wiki/)
+
+## Developer's Guide
+
+The developer's guide contains information on 
+[building](Developer'sGuide.md#build) Calamares,
+on its 
+[design](Developer'sGuide.md#design),
+and [localization](Developer'sGuide.md#i18n).
+Much of the technical documentation is in README.md files in the
+source code, though, where it is much closed to the things it
+documents.
+
+## Deployer's Guide
+
+## User's Guide
+
+## Translator's Guide
+
+You can help by [translating Calamares into your own language](https://www.transifex.com/calamares/calamares/)!
+

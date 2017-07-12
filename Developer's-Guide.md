@@ -1,3 +1,18 @@
+# Developer's Guide
+
+# How to build Calamares
+
+Clone Calamares from GitHub and `cd` into the calamares directory, then:
+```
+$ git submodule init
+$ git submodule update
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ make
+```
+
+
 # Setting up a development environment
 Clone Calamares from GitHub and `cd` into the calamares directory, then:
 
