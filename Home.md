@@ -10,8 +10,8 @@
 ## Support
 
 * [FAQ](FAQ)
-* [Bug Reports](https://calamares.io/bugs/)
-* [Continuous Integration](https://calamares.io/ci/)
+* [Bug Reports](https://github.com/calamares/calamares/issues)
+* [Continuous Integration](https://travis-ci.org/calamares/calamares)
 * [IRC](irc://irc.freenode.net/calamares) - #calamares on Freenode
 
 ## How to Help
@@ -31,6 +31,8 @@ and [localization](Developer'sGuide.md#i18n).
 Much of the technical documentation is in README.md files in the
 source code, though, where it is much closed to the things it
 documents.
+
+## Tester's Guide
 
 ## Deployer's Guide
 
