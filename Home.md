@@ -16,7 +16,7 @@
 
 ## How to Help
 
-* Send good [Bug Reports](https://calamares.io/bugs/)
+* Send good [Bug Reports](https://github.com/calamares/calamares/issues)
 * Contribute [Translations](https://www.transifex.com/calamares/calamares/)
 * Contribute [Code](https://github.com/calamares/calamares/)
 * Contribute [Documentation](https://github.com/calamares/calamares/wiki/)
@@ -28,11 +28,16 @@ The developer's guide contains information on
 on its 
 [design](Developer'sGuide.md#design),
 and [localization](Developer'sGuide.md#i18n).
-Much of the technical documentation is in README.md files in the
-source code, though, where it is much closed to the things it
-documents.
+Much of the technical documentation is in README files in the
+source code, though, where it is much closer to the things it
+documents. Of particular interest is the `/ci/` directory, which is where things-that-are-not-Calamares-itself but related to Calamares development (like the Continuous Integration scripts, like translation tools, and development documentation) end up.
+
+* [Coding Style](https://github.com/calamares/calamares/blob/master/ci/HACKING.md)
+* [Release Process](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
 
 ## Tester's Guide
+
+While developing Calamares, it needs [testing](Tester's-Guide) on virtual or physical machines. The Tester's Guide provides advice on setting up test-systems. It also explains the acceptance tests that should (or might) be done on Calamares.
 
 ## Deployer's Guide
 
