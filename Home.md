@@ -13,6 +13,7 @@
 * [Bug Reports](https://github.com/calamares/calamares/issues)
 * [Continuous Integration](https://travis-ci.org/calamares/calamares)
 * [IRC](irc://irc.freenode.net/calamares) - #calamares on Freenode
+  ([webchat](http://webchat.freenode.net/?randomnick=1&channels=%23calamares))
 
 ## How to Help
 
@@ -24,10 +25,10 @@
 ## Developer's Guide
 
 The developer's guide contains information on 
-[building](Developer'sGuide.md#build) Calamares,
+[building](Developer's-Guide.md#build) Calamares,
 on its 
-[design](Developer'sGuide.md#design),
-and [localization](Developer'sGuide.md#i18n).
+[design](Developer's-Guide.md#design),
+and [localization](Developer's-Guide.md#i18n).
 Much of the technical documentation is in README files in the
 source code, though, where it is much closer to the things it
 documents. Of particular interest is the `/ci/` directory, which is where things-that-are-not-Calamares-itself but related to Calamares development (like the Continuous Integration scripts, like translation tools, and development documentation) end up.
