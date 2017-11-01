@@ -1,6 +1,6 @@
 # Calamares
 
-> [Calamares](https://calamares.io/) is the universal installer framework. 
+> [Calamares](https://calamares.io/) is the universal installer framework.
 > This wiki is for *developers* working on Calamares, and for *deployers*
 > using Calamares as a framework / application for installing a Linux system.
 > There is also generic *user* documentation that applies to installing-your-
@@ -13,7 +13,7 @@
 * [Bug Reports](https://github.com/calamares/calamares/issues)
 * [Continuous Integration](https://travis-ci.org/calamares/calamares)
 * [IRC](irc://irc.freenode.net/calamares) - #calamares on Freenode
-  ([webchat](http://webchat.freenode.net/?randomnick=1&channels=%23calamares))
+  ([webchat](https://webchat.freenode.net/?randomnick=1&channels=%23calamares))
 
 ## How to Help
 
@@ -24,9 +24,9 @@
 
 ## Developer's Guide
 
-The developer's guide contains information on 
+The developer's guide contains information on
 [building](Developer's-Guide.md#build) Calamares,
-on its 
+on its
 [design](Developer's-Guide.md#design),
 and [localization](Developer's-Guide.md#i18n).
 Much of the technical documentation is in README files in the
@@ -42,7 +42,18 @@ While developing Calamares, it needs [testing](Tester's-Guide) on virtual or phy
 
 ## Deployer's Guide
 
+The [deployer's guide](Deployer's-Guide) describes how to deploy
+Calamares in your distribuion Live CD or other medium. This is the
+guide to read when Calamares works and runs properly on your development
+systems, and you're ready to integrate it with the distribution's install medium.
+
 ## User's Guide
+
+The user's guide is intended to be generic instructions for installing
+with Calamares, describing the various end-user visible parts of the
+installation process. Unfortunately, nothing has been written for it
+yet; you'll have to use the installation instructions from one or another
+distribution that uses Calamares.
 
 ## Translator's Guide
 
