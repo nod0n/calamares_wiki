@@ -49,11 +49,11 @@ systems, and you're ready to integrate it with the distribution's install medium
 
 ## User's Guide
 
-The user's guide is intended to be generic instructions for installing
-with Calamares, describing the various end-user visible parts of the
-installation process. Unfortunately, nothing has been written for it
-yet; you'll have to use the installation instructions from one or another
-distribution that uses Calamares.
+The [user's guide](Users-Guide) is intended to be generic instructions for
+installing with Calamares, describing the various end-user visible parts
+of the installation process. This is intended as a *starting point* for
+distribution documentation, not as a replacement for it.
+
 
 ## Translator's Guide
 
