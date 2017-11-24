@@ -59,3 +59,6 @@ distribution documentation, not as a replacement for it.
 
 You can help by [translating Calamares into your own language](https://www.transifex.com/calamares/calamares/)!
 
+There are some general translation guidelines in the 
+[translator's guide](Translators-Guide).
+
