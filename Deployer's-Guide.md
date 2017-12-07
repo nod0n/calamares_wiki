@@ -17,18 +17,18 @@ _here, and it must clearly be declared as such._
 
 ## Configuring Calamares
 
-Calamares is designed to be thoroughly configurable and suitable for a wide 
+Calamares is designed to be thoroughly configurable and suitable for a wide
 range of use cases.
 
-End users are not supposed to deal with configuration issues, so all 
-configuration is done through YAML configuration files. The files named 
-here link to the sample configuration files shipped with Calamares, 
+End users are not supposed to deal with configuration issues, so all
+configuration is done through YAML configuration files. The files named
+here link to the sample configuration files shipped with Calamares,
 which also contain the documentation for the settings in each file.
 
 Each sample configuration file contains documentation on the options it
 contains (it not, it's a bug and you should file an issue).
 
-The top-level configuration of Calamares is done in 
+The top-level configuration of Calamares is done in
 [`settings.conf`][settings.conf], the file which defines which modules
 the system uses and whether it is in OEM (*dont-chroot*) or normal
 system-installer mode. The modules listed in `settings.conf`
@@ -52,6 +52,30 @@ the respective files.
 ## LUKS deployment
 
 See article: [LUKS deployment advice](LUKS-Deployment).
+
+## OEM Modes
+
+Calamares supports so-called "OEM mode", which can be used when an OEM
+installs an image to a piece of hardware (e.g. a laptop) where the
+installed image boots to a desktop where the user (e.g. the person
+who has purchased the laptop) can complete installation by customizing
+the installation (e.g. by picking another username).
+
+An OEM can use Calamares in two different situations: for creating
+an image before the device is delivered to the customer, and
+for configuring the device (by the customer) after it is delivered.
+These are documented in the next two sections.
+
+### OEM Imaging (pre-delivery)
+
+> This is about setting up a sensible configuration for Calamares
+> so that it writes an OS image with an autologin user.
+
+### OEM Configuration (post-delivery)
+
+> This isa bout the configuration of Calamares that should be
+> written into the image, so that on first boot it can do
+> the right thing.
 
 ## Known Issues
 
@@ -96,3 +120,5 @@ The first one, `systemd-fstab-generator`, looks for swap partitions in `/etc/fst
 The second one, `systemd-gpt-auto-generator`, only works on GPT partition tables. It monitors all the disks with a GPT disklabel and promptly performs a `swapon` on any partition of type 82 (Linux swap) it can find. It can be disabled by **replacing `/usr/lib/systemd/system-generators/systemd-gpt-auto-generator` with a symlink to `/dev/null`** (very ugly, but apparently that's someone's idea of making it configurable, see [bug report](https://bugs.freedesktop.org/show_bug.cgi?id=87230), [commit](https://cgit.freedesktop.org/systemd/systemd/commit/?id=e801700e9a) and [documentation](https://www.freedesktop.org/software/systemd/man/systemd-gpt-auto-generator.html)). If you test this symlink solution on a running system, don't forget to `systemctl daemon-reload`.
 
 Please note that this systemd peculiarity only affects the live system. On the target system, you are free to configure systemd however you like with no impact on Calamares.
+
+
