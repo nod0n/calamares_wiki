@@ -148,16 +148,45 @@ This issue will also affect any other installer or even a manual install, unless
 
 ### systemd automount generators
 
-As of late 2014, systemd supports automounting, presumably with the goal of superseding `fstab`. Regardless of one's opinion on whether systemd should or should not replace certain system components, this behavior of systemd has been found to break Calamares in some occasions.
+As of late 2014, systemd supports automounting, presumably with the goal of 
+superseding `fstab`. Regardless of one's opinion on whether systemd should or 
+should not replace certain system components, this behavior of systemd has been 
+found to break Calamares in some occasions.
 
-Namely, in some situations systemd keeps mounting swap partitions it finds (`swapon`), even when the user (or Calamares) runs `swapoff` to unmount a swap partition. For more information, see [Swap Activation by systemd on the Arch Wiki](https://wiki.archlinux.org/index.php/swap#Activation_by_systemd). This inconsistently breaks Calamares partitioning: Calamares needs to disable all swap before performing partitioning operations on that disk, but then systemd immediately turns swap partitions back on, which makes partitioning operations fail. For best results, Calamares must have complete control over the mounted status of all partitions. Any interference might lead to unpredictable behavior.
+Namely, in some situations systemd keeps mounting swap partitions it finds 
+(`swapon`), even when the user (or Calamares) runs `swapoff` to unmount a swap 
+partition. For more information, see [Swap Activation by systemd on the Arch 
+Wiki](https://wiki.archlinux.org/index.php/swap#Activation_by_systemd). This 
+inconsistently breaks Calamares partitioning: Calamares needs to disable all 
+swap before performing partitioning operations on that disk, but then systemd 
+immediately turns swap partitions back on, which makes partitioning operations 
+fail. For best results, Calamares must have complete control over the mounted 
+status of all partitions. Any interference might lead to unpredictable behavior.
 
-The specific culprits are `systemd-fstab-generator` and `systemd-gpt-auto-generator`, both in `/usr/lib/systemd/system-generators`.
+The specific culprits are `systemd-fstab-generator` and 
+`systemd-gpt-auto-generator`, both in `/usr/lib/systemd/system-generators`.
 
-The first one, `systemd-fstab-generator`, looks for swap partitions in `/etc/fstab` and keeps quickly remounting them when the user unmounts them. To avoid this, simply **make sure that `/etc/fstab` contains no swap partitions** on the live system.
+The first one, `systemd-fstab-generator`, looks for swap partitions in 
+`/etc/fstab` and keeps quickly remounting them when the user unmounts them. To 
+avoid this, simply **make sure that `/etc/fstab` contains no swap partitions** 
+on the live system.
 
-The second one, `systemd-gpt-auto-generator`, only works on GPT partition tables. It monitors all the disks with a GPT disklabel and promptly performs a `swapon` on any partition of type 82 (Linux swap) it can find. It can be disabled by **replacing `/usr/lib/systemd/system-generators/systemd-gpt-auto-generator` with a symlink to `/dev/null`** (very ugly, but apparently that's someone's idea of making it configurable, see [bug report](https://bugs.freedesktop.org/show_bug.cgi?id=87230), [commit](https://cgit.freedesktop.org/systemd/systemd/commit/?id=e801700e9a) and [documentation](https://www.freedesktop.org/software/systemd/man/systemd-gpt-auto-generator.html)). If you test this symlink solution on a running system, don't forget to `systemctl daemon-reload`.
+The second one, `systemd-gpt-auto-generator`, only works on GPT partition 
+tables. It monitors all the disks with a GPT disklabel and promptly performs a 
+`swapon` on any partition of type 82 (Linux swap) it can find. It can be 
+disabled by linking that file to `/dev/null`, either in 
+`/usr/lib/systemd/system-generators` (invasive) or by adding
+a the symlink to `/etc/systemd/system-generators` (less invasive).
+This is very ugly, but apparently that's someone's idea of making it 
+configurable, see 
+[bug report](https://bugs.freedesktop.org/show_bug.cgi?id=87230), 
+[commit](https://cgit.freedesktop.org/systemd/systemd/commit/?id=e801700e9a) and
+[documentation](https://www.freedesktop.org/software/systemd/man/systemd-gpt-auto-generator.html).
+If you test this symlink solution on a running system, 
+don't forget to `systemctl daemon-reload`.
 
-Please note that this systemd peculiarity only affects the live system. On the target system, you are free to configure systemd however you like with no impact on Calamares.
+Please note that this systemd peculiarity only affects the live system. On the 
+target system, you are free to configure systemd however you like with no impact 
+on Calamares.
 
 
