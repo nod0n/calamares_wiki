@@ -33,17 +33,21 @@ The top-level configuration of Calamares is done in
 the system uses and whether it is in OEM (*dont-chroot*) or normal
 system-installer mode. The modules listed in `settings.conf`
 are loaded one by one; their configurations are documented in
-the respective files.
+the respective files (see the [source tree][modules]).
 
+Calamares is usually shipped with *PREFIX* set to `/usr`,
+so that most of its configuration is in `/usr/share/calamares`.
+In the table below, `$USC` means that directory.
 
 | File name | Deployment path (in search priority) | Purpose |
 |:---------:|:------------------------------------:|:-------:|
-| [`settings.conf`][settings.conf] | `/etc/calamares`, `/usr/share/calamares` | Main Calamares configuration file |
+| [`settings.conf`][settings.conf] | `/etc/calamares`, `$USC` | Main Calamares configuration file |
 | _`modulename`_`.conf`, e.g. `partition.conf`, `grubcfg.conf`, `unpackfs.conf`, ... | `/etc/calamares/modules`, `/usr/share/calamares/modules` | Configuration files for every module that needs one |
 | [`partition.conf`][partition.conf] | | Configuration for (automatic) partitioning and swap |
 | [`displaymanager.conf`][displaymanager.conf] | | Configuration for the display manager, select SDDM, lightdm, ... |
-| [`branding.desc`][branding.desc] | `/usr/share/calamares/`_`branding_component_name`_ | Branding descriptor file, shipped with the rest of your branding component and selected in `settings.conf` |
+| [`branding.desc`][branding.desc] | `$USC`_`brand_name`_ | Branding descriptor file, shipped with the rest of your branding component and selected in `settings.conf` |
 
+[modules]: https://github.com/calamares/calamares/blob/master/src/modules
 [settings.conf]: https://github.com/calamares/calamares/blob/master/settings.conf
 [branding.desc]: https://github.com/calamares/calamares/blob/master/src/branding/default/branding.desc
 [displaymanager.conf]: https://github.com/calamares/calamares/blob/master/src/modules/displaymanager/displaymanager.conf
