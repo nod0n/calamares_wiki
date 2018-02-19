@@ -7,9 +7,8 @@
 > Calamares for system installation -- should be configuring
 > the application.
 
-* [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md) (in master, TODO: move to wiki)
-* [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md) (in master, TODO: move to wiki)
-* [Deployment Practices](Deployment-Practices)
+* [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
+* [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
 
 _Distro-specific deployment information may be added in pages linked from_
 _here, and it must clearly be declared as such._
@@ -42,16 +41,52 @@ In the table below, `$USC` means that directory.
 | File name | Deployment path (in search priority) | Purpose |
 |:---------:|:------------------------------------:|:-------:|
 | [`settings.conf`][settings.conf] | `/etc/calamares`, `$USC` | Main Calamares configuration file |
-| _`modulename`_`.conf`, e.g. `partition.conf`, `grubcfg.conf`, `unpackfs.conf`, ... | `/etc/calamares/modules`, `/usr/share/calamares/modules` | Configuration files for every module that needs one |
+| [`branding.desc`][branding.desc] | `$USC/`_`brand_name`_ | Branding descriptor file, shipped with the rest of your branding component and selected in `settings.conf` |
+| _`modulename`_`.conf`, e.g. `partition.conf`, `grubcfg.conf`, `unpackfs.conf`, ... | `/etc/calamares/modules`, `$USC/modules` | Configuration files for every module that needs one |
 | [`partition.conf`][partition.conf] | | Configuration for (automatic) partitioning and swap |
 | [`displaymanager.conf`][displaymanager.conf] | | Configuration for the display manager, select SDDM, lightdm, ... |
-| [`branding.desc`][branding.desc] | `$USC`_`brand_name`_ | Branding descriptor file, shipped with the rest of your branding component and selected in `settings.conf` |
 
 [modules]: https://github.com/calamares/calamares/blob/master/src/modules
 [settings.conf]: https://github.com/calamares/calamares/blob/master/settings.conf
 [branding.desc]: https://github.com/calamares/calamares/blob/master/src/branding/default/branding.desc
 [displaymanager.conf]: https://github.com/calamares/calamares/blob/master/src/modules/displaymanager/displaymanager.conf
 [partition.conf]: https://github.com/calamares/calamares/blob/master/src/modules/partition/partition.conf
+
+### Calamares Settings
+
+At a high level, the `settings.conf` file defines a **sequence** of things 
+to do (actions) during an installation. This defines the order in which 
+user-visible actions are taken (e.g. configuring the timezone) as well as 
+internal actions (e.g. installing the bootloader).
+
+For internal actions, there are different kinds of Calamares modules
+which differ in how they are configured. These can be used to run
+commands or perform changes to the target system during installation:
+ - Always executing one command (*process* modules). Using this
+   means creating a new module directory under `$USC/modules` with a 
+   suitable `module.desc` file that defines the command to run. This 
+   is no longer recommended.
+ - Always executing one or more commands (*shellprocess* instances).
+   Using this means defining an instance in `settings.conf` and 
+   adding a suitable configuration file with the list of commands
+   to the configuration directory, e.g. to `$USC/modules/shellprocess`.
+   This has the (slight) advantage that it does require intermediate
+   directories, and has better error handling.
+ - Conditionally executing one or more commands (*contextualprocess*
+   instances). This needs an instance and a configuration file
+   describing which conditions (expressed as values in the Calamares
+   global configuration) cause which commands to run.
+ - Conditionally executing one or more commands (*python* job)
+   with arbitrary logic. This means creating a new module directory
+   under `$USC/modules` and writing a `main.py`. This allows much
+   more expressive logic than *contextualprocess* instances.
+   Most existing Calamares modules are of this type.
+ - Conditionally executing one or more commands (*C++* job)
+   with arbitrary logic. This means creating a new module directory
+   in the Calamares source tree and adding suitable C++ and CMake
+   code to get it to compile. This is the most programmer-intensive
+   form of modules, but does allow the most access to Calamares
+   internals.
 
 ## LUKS deployment
 
