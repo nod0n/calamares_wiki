@@ -43,31 +43,33 @@ In the table below, `$USC` means that directory.
 | [`settings.conf`][settings.conf] | `/etc/calamares`, `$USC` | Main Calamares configuration file |
 | [`branding.desc`][branding.desc] | `$USC/`_`brand_name`_ | Branding descriptor file, shipped with the rest of your branding component and selected in `settings.conf` |
 | _`modulename`_`.conf`, e.g. `partition.conf`, `grubcfg.conf`, `unpackfs.conf`, ... | `/etc/calamares/modules`, `$USC/modules` | Configuration files for every module that needs one |
-| [`partition.conf`][partition.conf] | | Configuration for (automatic) partitioning and swap |
 | [`displaymanager.conf`][displaymanager.conf] | | Configuration for the display manager, select SDDM, lightdm, ... |
+| [`locale.conf`][locale.conf] | | Locale and TimeZone configuration. GeoIP settings. |
+| [`partition.conf`][partition.conf] | | Configuration for (automatic) partitioning and swap |
 
 [modules]: https://github.com/calamares/calamares/blob/master/src/modules
 [settings.conf]: https://github.com/calamares/calamares/blob/master/settings.conf
 [branding.desc]: https://github.com/calamares/calamares/blob/master/src/branding/default/branding.desc
 [displaymanager.conf]: https://github.com/calamares/calamares/blob/master/src/modules/displaymanager/displaymanager.conf
+[locale.conf]: https://github.com/calamares/calamares/blob/master/src/modules/locale/locale.conf
 [partition.conf]: https://github.com/calamares/calamares/blob/master/src/modules/partition/partition.conf
 
 ### Calamares Settings
 
-At a high level, the `settings.conf` file defines a **sequence** of things 
-to do (actions) during an installation. This defines the order in which 
-user-visible actions are taken (e.g. configuring the timezone) as well as 
+At a high level, the `settings.conf` file defines a **sequence** of things
+to do (actions) during an installation. This defines the order in which
+user-visible actions are taken (e.g. configuring the timezone) as well as
 internal actions (e.g. installing the bootloader).
 
 For internal actions, there are different kinds of Calamares modules
 which differ in how they are configured. These can be used to run
 commands or perform changes to the target system during installation:
  - Always executing one command (*process* modules). Using this
-   means creating a new module directory under `$USC/modules` with a 
-   suitable `module.desc` file that defines the command to run. This 
+   means creating a new module directory under `$USC/modules` with a
+   suitable `module.desc` file that defines the command to run. This
    is no longer recommended.
  - Always executing one or more commands (*shellprocess* instances).
-   Using this means defining an instance in `settings.conf` and 
+   Using this means defining an instance in `settings.conf` and
    adding a suitable configuration file with the list of commands
    to the configuration directory, e.g. to `$USC/modules/shellprocess`.
    This has the (slight) advantage that it does require intermediate
@@ -79,7 +81,8 @@ commands or perform changes to the target system during installation:
  - Conditionally executing one or more commands (*python* job)
    with arbitrary logic. This means creating a new module directory
    under `$USC/modules` and writing a `main.py`. This allows much
-   more expressive logic than *contextualprocess* instances.
+   more expressive logic than *contextualprocess* instances, at
+   the expense of more complicated packaging and programming.
    Most existing Calamares modules are of this type.
  - Conditionally executing one or more commands (*C++* job)
    with arbitrary logic. This means creating a new module directory
@@ -112,7 +115,7 @@ These are documented in the next two sections.
 
 ### OEM Configuration (post-delivery)
 
-> This isa bout the configuration of Calamares that should be
+> This is about the configuration of Calamares that should be
 > written into the image, so that on first boot it can do
 > the right thing.
 
@@ -148,45 +151,45 @@ This issue will also affect any other installer or even a manual install, unless
 
 ### systemd automount generators
 
-As of late 2014, systemd supports automounting, presumably with the goal of 
-superseding `fstab`. Regardless of one's opinion on whether systemd should or 
-should not replace certain system components, this behavior of systemd has been 
+As of late 2014, systemd supports automounting, presumably with the goal of
+superseding `fstab`. Regardless of one's opinion on whether systemd should or
+should not replace certain system components, this behavior of systemd has been
 found to break Calamares in some occasions.
 
-Namely, in some situations systemd keeps mounting swap partitions it finds 
-(`swapon`), even when the user (or Calamares) runs `swapoff` to unmount a swap 
-partition. For more information, see [Swap Activation by systemd on the Arch 
-Wiki](https://wiki.archlinux.org/index.php/swap#Activation_by_systemd). This 
-inconsistently breaks Calamares partitioning: Calamares needs to disable all 
-swap before performing partitioning operations on that disk, but then systemd 
-immediately turns swap partitions back on, which makes partitioning operations 
-fail. For best results, Calamares must have complete control over the mounted 
+Namely, in some situations systemd keeps mounting swap partitions it finds
+(`swapon`), even when the user (or Calamares) runs `swapoff` to unmount a swap
+partition. For more information, see [Swap Activation by systemd on the Arch
+Wiki](https://wiki.archlinux.org/index.php/swap#Activation_by_systemd). This
+inconsistently breaks Calamares partitioning: Calamares needs to disable all
+swap before performing partitioning operations on that disk, but then systemd
+immediately turns swap partitions back on, which makes partitioning operations
+fail. For best results, Calamares must have complete control over the mounted
 status of all partitions. Any interference might lead to unpredictable behavior.
 
-The specific culprits are `systemd-fstab-generator` and 
+The specific culprits are `systemd-fstab-generator` and
 `systemd-gpt-auto-generator`, both in `/usr/lib/systemd/system-generators`.
 
-The first one, `systemd-fstab-generator`, looks for swap partitions in 
-`/etc/fstab` and keeps quickly remounting them when the user unmounts them. To 
-avoid this, simply **make sure that `/etc/fstab` contains no swap partitions** 
+The first one, `systemd-fstab-generator`, looks for swap partitions in
+`/etc/fstab` and keeps quickly remounting them when the user unmounts them. To
+avoid this, simply **make sure that `/etc/fstab` contains no swap partitions**
 on the live system.
 
-The second one, `systemd-gpt-auto-generator`, only works on GPT partition 
-tables. It monitors all the disks with a GPT disklabel and promptly performs a 
-`swapon` on any partition of type 82 (Linux swap) it can find. It can be 
-disabled by linking that file to `/dev/null`, either in 
+The second one, `systemd-gpt-auto-generator`, only works on GPT partition
+tables. It monitors all the disks with a GPT disklabel and promptly performs a
+`swapon` on any partition of type 82 (Linux swap) it can find. It can be
+disabled by linking that file to `/dev/null`, either in
 `/usr/lib/systemd/system-generators` (invasive) or by adding
 a the symlink to `/etc/systemd/system-generators` (less invasive).
-This is very ugly, but apparently that's someone's idea of making it 
-configurable, see 
-[bug report](https://bugs.freedesktop.org/show_bug.cgi?id=87230), 
+This is very ugly, but apparently that's someone's idea of making it
+configurable, see
+[bug report](https://bugs.freedesktop.org/show_bug.cgi?id=87230),
 [commit](https://cgit.freedesktop.org/systemd/systemd/commit/?id=e801700e9a) and
 [documentation](https://www.freedesktop.org/software/systemd/man/systemd-gpt-auto-generator.html).
-If you test this symlink solution on a running system, 
+If you test this symlink solution on a running system,
 don't forget to `systemctl daemon-reload`.
 
-Please note that this systemd peculiarity only affects the live system. On the 
-target system, you are free to configure systemd however you like with no impact 
+Please note that this systemd peculiarity only affects the live system. On the
+target system, you are free to configure systemd however you like with no impact
 on Calamares.
 
 
