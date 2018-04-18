@@ -108,16 +108,49 @@ an image before the device is delivered to the customer, and
 for configuring the device (by the customer) after it is delivered.
 These are documented in the next two sections.
 
+All OEM modes are enabled by setting the *dontChroot* key in
+`settings.conf` to the value *true*.
+
 ### OEM Imaging (pre-delivery)
 
 > This is about setting up a sensible configuration for Calamares
 > so that it writes an OS image with an autologin user.
 
+(TODO)
+
 ### OEM Configuration (post-delivery)
 
 > This is about the configuration of Calamares that should be
-> written into the image, so that on first boot it can do
-> the right thing.
+> written into the image, so that on first boot it can act as
+> a "first run installer".
+
+In post-delivery configuration, an complete installation is already present on 
+the storage medium (e.g. SD card) in a device. The device boots to a 
+graphical desktop environment. It is recommended to have Calamares
+autostart in that environment, or to make Calamares prominently
+visible in the graphical environment (e.g. an icon on the desktop).
+
+The following Calamares modules (from the default list) are suitable
+for use in a first-run installer situation:
+
+ - *welcome*, to allow installer-language selection.
+ - *users*, to create a non-default user in the system.
+ - *locale*, *keyboard* for localization and individual configuration.
+ - *plasmalnf*, for KDE-based distributions with Plasma Desktop.
+ - *finished*.
+
+The following are useful in the *exec* section:
+ - *machineid*, for DBus.
+ - *users*, *locale*, *keyboard*, *localecfg* to modify the configuration
+   according to the selections made previously.
+ - *networkcfg*, *services*, *displaymanager*  for additional initialization
+   that cannot be done before the machine is customized.
+ - *packages*, to update packages, install localizations, remove packages
+   (e.g. Calamares itself, since it is no longer needed after the first run).
+ - *process*, *shellprocess* and *contextualprocess* for running arbitrary
+   shell commands. This can be used to, e.g. resize the filesystem image
+   to fill the entire card, or to configure specifics of the image that
+   are only known at runtime.
 
 ## Known Issues
 
