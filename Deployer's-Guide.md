@@ -9,7 +9,7 @@
 
 * [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
 * [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
-* [Known Issues](Deployers-Issues.md)
+* [Known Issues](Deployers-Issues)
 
 _Distro-specific deployment information may be added in pages linked from_
 _here, and it must clearly be declared as such._
