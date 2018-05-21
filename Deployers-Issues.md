@@ -4,6 +4,15 @@
 > Calamares. Typically they are configuration issues and bugs in
 > external tools used by Calamares during system installation.
 
+### xfsprogs 4.16 onward will fail grub install
+
+(*From issue #960, 2018-05-21*)
+
+If the root and /boot filesystems are created as XFS, xfsprogs 4.16 and later
+use the *spinode* option by default, which will cause a grub-install failure
+(unknown filesystem) later. As a workaround, disable *spinode* by default,
+as noted in the issue.
+
 ### Systemd 237 and rsync
 
 (*From issue #907, 2018-02-14*)
