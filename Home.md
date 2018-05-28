@@ -66,3 +66,29 @@ You can help by [translating Calamares into your own language](https://www.trans
 There are some general translation guidelines in the
 [translator's guide](Translate-Guide).
 
+## Code of Conduct
+
+(*draft 2018-05-28*)
+
+The Calamares community -- of developers, translators, and downstream (distro) users --
+aims to be courteous, professional, and inclusive. Harrassment, discriminatory
+statements and abuse are not tolerated. In general, we apply the
+[KDE Code of Conduct](https://www.kde.org/code-of-conduct/) and the
+[GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct) (the
+rules of decent behavior in both communities are pretty much the same).
+
+This has a few consequences where the admins of the Calamares community
+will take action:
+ - abusive and harrassing comments on issues and pull-requests will be removed.
+ - off-topic and irrelevant comments on issues and pull-requests may be removed
+   (off-topic comments that could be a topic in their own right, may be
+   re-posted to a relevant issue though).
+
+Other considerations in comments:
+ - comment on code, comment on design, ask questions about the intent of
+   feature requests or pull-requests, but assume good intentions. A request
+   is just a request, and "no" is just as good as "no, that's stupid".
+ - English is the common language of the project. It is the first language
+   of a minority of the project. Take language issues into account.
+ - Non-English comments will probably be ignored or removed; special
+   circumstances may apply.
