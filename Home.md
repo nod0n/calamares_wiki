@@ -25,10 +25,10 @@
 ## Developer's Guide
 
 The developer's guide contains information on
-[building](Developer's-Guide.md#build) Calamares,
+[building](Develop-Guide.md#build) Calamares,
 on its
-[design](Developer's-Guide.md#design),
-and [localization](Developer's-Guide.md#i18n).
+[design](Develop-Guide.md#design),
+and [localization](Develop-Guide.md#i18n).
 Much of the technical documentation is in README files in the
 source code, though, where it is much closer to the things it
 documents. Of particular interest is the `/ci/` directory, which is where things-that-are-not-Calamares-itself but related to Calamares development (like the Continuous Integration scripts, like translation tools, and development documentation) end up.
@@ -38,18 +38,22 @@ documents. Of particular interest is the `/ci/` directory, which is where things
 
 ## Tester's Guide
 
-While developing Calamares, it needs [testing](Tester's-Guide) on virtual or physical machines. The Tester's Guide provides advice on setting up test-systems. It also explains the acceptance tests that should (or might) be done on Calamares.
+While developing Calamares, it needs [testing](Test-Guide) on virtual or physical machines. The Tester's Guide provides advice on setting up test-systems. It also explains the acceptance tests that should (or might) be done on Calamares.
 
 ## Deployer's Guide
 
-The [deployer's guide](Deployer's-Guide) describes how to deploy
+The [deployer's guide](Deploy-Guide) describes how to deploy
 Calamares in your distribuion Live CD or other medium. This is the
 guide to read when Calamares works and runs properly on your development
 systems, and you're ready to integrate it with the distribution's install medium.
 
+(In addition there is a list of [known issues](Deploy-Issues), common
+[configuration tips](Deploy-xConfiguration)  and some
+documentation on specialized topics like [LUKS](Deploy-xLUKS))
+
 ## User's Guide
 
-The [user's guide](Users-Guide) is intended to be generic instructions for
+The [user's guide](Use-Guide) is intended to be generic instructions for
 installing with Calamares, describing the various end-user visible parts
 of the installation process. This is intended as a *starting point* for
 distribution documentation, not as a replacement for it.
@@ -59,6 +63,6 @@ distribution documentation, not as a replacement for it.
 
 You can help by [translating Calamares into your own language](https://www.transifex.com/calamares/calamares/)!
 
-There are some general translation guidelines in the 
-[translator's guide](Translators-Guide).
+There are some general translation guidelines in the
+[translator's guide](Translate-Guide).
 
