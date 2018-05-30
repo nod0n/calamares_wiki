@@ -1,31 +1,37 @@
-# Developer's Guide
+> This guide describes how to develop Calamares -- that is,
+> compile it, configure those parts that don't fall under
+> deployment, and contains some notes on packaging Calamares as well.
+
+# Pre-requisites
+
+Calamares is a C++ program. It uses the Qt libraries. It may use KDE 
+Frameworks libraries. You will need those installed on your development
+system in order to work on Calamares. You may need additional tools,
+such as a text-editor, the git reversion-control system, Qt Designer,
+and an image-manipulation program.
+
+See the heading [Quick Deployment Script](#quick-deployment-script)
+for information on how to quickly install a development environment on
+most **live** CD systems (not recommended for installed systems outside
+of development-VMs).
 
 # How to build Calamares
 
-Clone Calamares from GitHub and `cd` into the calamares directory, then:
+Clone Calamares from GitHub, run CMake, and compile it:
 ```
-$ git submodule init
-$ git submodule update
-$ mkdir build
-$ cd build
+$ git clone https://github.com/calamares/calamares.git
+$ mkdir calamares/build
+$ cd calamares/build
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 $ make
 ```
 
+See below for a list of CMake variables that influence the Calamares
+build and optional components.
 
-# Setting up a development environment
-Clone Calamares from GitHub and `cd` into the calamares directory, then:
-
-```
-$ git submodule init
-$ git submodule update
-$ mkdir build
-$ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_USE_QT_SYS_PATHS=1 -DWITH_PYTHONQT=ON ..
-$ make
-```
-
-This will give you a debug build of Calamares, with debug symbols. It can then be run straight from the `build` directory without installing in any of the following ways:
+This will give you a debug build of Calamares, with debug symbols. 
+It can then be run straight from the `build` directory without installing in 
+one of the following ways:
 ```
 $ ./calamares -d
 $ sudo ./calamares -d
@@ -34,14 +40,42 @@ $ pkexec ./calamares -d
 To start it in `gdb`:
 ```
 $ sudo gdb ./calamares
-(gdb) r -d
+(gdb) run -d
 ```
-When running Calamares with the `-d` parameter, it will also pick up a `settings.conf` placed in the `build` directory (if present), and it will show the debug information interface in the bottom left area of the main window.
+When running Calamares with the `-d` parameter, it will also pick up a 
+`settings.conf` placed in the `build` directory (if present), and it will 
+show the debug information interface in the bottom left area of the main window.
+In a system with no Calamares configuration installed (e.g. a development
+VM, or a live CD which doesn't use Calamares yet), you will need to copy
+`settings.conf` from the top-level source directory into the build directory.
 
 ## Supported variables for CMake
 
-* `WITH_PYTHON` - if this is set to false, the Python module interface will not be built. Default is true.
-* `SKIP_MODULES` - takes a space-separated list of module names that should not be built even if present in `src/modules` (e.g. `cmake -DSKIP_MODULES="partition mount umount welcome" ..`). Default is empty.
+Options that influence what parts of Calamares are built:
+
+* `WITH_KF5Crash` - improved crash reporting, compatible with Dr. Konqui.
+  Default is true.
+* `WITH_PYTHON` - if this is set to false, the Python module interface will 
+  not be built. Default is true. (Python is optional, but strongly recommended)
+* `WITH_PYTHONQT` - if this is set to false, the PythonQT module interface will
+  bot be built. Default is true. (PythonQt is optional)
+* `SKIP_MODULES` - takes a space-separated list of module names that should 
+  not be built even if present in `src/modules`. Default is empty.
+  For example,  `cmake -DSKIP_MODULES="partition mount umount welcome" ..`
+  builds Calamares without partitioning, mounting or the welcome module.
+  Some modules automatically disable themselves if their dependencies
+  are not found. Disabled modules are listed at the end of CMake's output.
+* `BUILD_TESTING` - if this is set to true, then test-applications and tools
+  are built, along with the main Calamares executable and modules. Default
+  is true. The test-applications are not installed or packaged, and can
+  be found in the build directory (for testing purposes).
+
+Options that influence where Calamares is installed:
+* `CMAKE_INSTALL_PREFIX` can be set to a prefix where Calamares and its
+  tools will be installed. By default, Calamares follows the GNU InstallDirs
+  conventions.
+* `KDE_INSTALL_USE_QT_SYS_PATHS` if set to true, prefers to install to
+  Qt paths rather than system paths.
 
 # Quick deployment script
 
