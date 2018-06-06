@@ -94,7 +94,7 @@ commands or perform changes to the target system during installation:
 
 ## LUKS deployment
 
-See article: [LUKS deployment advice](LUKS-Deployment).
+See article: [LUKS deployment advice](Deploy-LUKS).
 
 ## OEM Modes
 
