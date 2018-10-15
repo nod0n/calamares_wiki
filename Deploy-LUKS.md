@@ -3,7 +3,7 @@
 In order for the full disk encryption feature to work, the following is needed on the live system:
 * Calamares 2.3 or later (depending on your initramfs generator, a more recent version may be required, see the instructions below);
 * KPMcore 2.2 or later;
-* `cryptsetup` 1.7-ish (1.7.2 known to work);
+* `cryptsetup` 1.7 or later;
 * GRUB 2 (2.02-beta2 known to work) - see warning below.
 
 Additionally, the following must be present inside the image that ends up as your rootfs:
@@ -23,6 +23,8 @@ If your system has `mkinitcpio`:
 * use Calamares 2.3 or later,
 * deploy the `mkinitcpio-openswap` package to your rootfs image,
 * uncomment the `luksbootkeyfile` and `luksopenswaphookcfg` modules in `settings.conf`.
+* uncomment the `grubcfg` modules in `settings.conf`.
+* add `GRUB_ENABLE_CRYPTODISK: true` to the `defaults` section of `grubcfg.conf`.
 
 ## `update-initramfs` from `initramfs-tools` (Debian and derivatives)
 
@@ -31,6 +33,8 @@ If your system has `update-initramfs` from the Debian `initramfs-tools`:
 * use Calamares 2.4.3 or later,
 * uncomment the `luksbootkeyfile` module in `settings.conf`,
 * add the `initramfscfg` module to `settings.conf` (after `mount`, but before `initramfs`),
+* uncomment the `grubcfg` modules in `settings.conf`.
+* add `GRUB_ENABLE_CRYPTODISK: true` to the `defaults` section of `grubcfg.conf`.
 * in `fstab.conf`, change the `crypttabOptions` line as documented in the comments in the file (the `initramfs-tools` will otherwise completely ignore the keyfile), i.e., to:
 ```yaml
 crypttabOptions: luks,keyscript=/bin/cat
@@ -51,6 +55,8 @@ If your system has the `dracut` initramfs management system:
 
 * use Calamares 2.4.3 or later,
 * uncomment the `luksbootkeyfile` and `dracutlukscfg` modules in `settings.conf`.
+* uncomment the `grubcfg` modules in `settings.conf`.
+* add `GRUB_ENABLE_CRYPTODISK: true` to the `defaults` section of `grubcfg.conf`.
 
 Caveats:
 * We were unable to test resuming from encrypted swap because resuming from hibernation did not even work for us in the unencrypted case. There should be no special hook (such as `mkinitcpio-openswap`) needed with `dracut`, and we already write the required configuration setting, but it is currently **not** working for us because resuming was just generally broken in our testing.
@@ -64,6 +70,8 @@ Unfortunately, if you are not using one of the above, already supported initramf
 * Be sure to **add the `luksbootkeyfile` module**, which is common to all initramfs management systems, to your main `exec` phase in `settings.conf`, after `mount` but before whatever module you are using to set up your initramfs configuration and build the image.
 * You will need to configure your initramfs generator to include the keyfile `/crypto_keyfile.bin` (written by the above) in the initramfs. You may also have to explicitly tell it to enable LUKS support and/or to include `/etc/crypttab`. (See the `mkinitcpiocfg`, `initramfscfg` and `dracutlukscfg` modules for examples of how this is done in different initramfs management systems.)
 * For resuming from an encrypted swap partition to work, you will probably need a hook such as `mkinitcpio-openswap` and to enable it in the configuration (as the `luksopenswaphookcfg` module does for `mkinitcpio-openswap`). This is highly dependent on the individual initramfs management system, so please refer to its documentation.
+* uncomment the `grubcfg` modules in `settings.conf`.
+* add `GRUB_ENABLE_CRYPTODISK: true` to the `defaults` section of `grubcfg.conf`.
 
 # Technical details about full disk encryption support in Calamares
 
