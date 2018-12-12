@@ -12,7 +12,8 @@ project in Transifex.
 
 ## Getting Started
 
-You'll need a Transifex account. Follow their instructions, they
+You'll need a [Transifex account](https://www.transifex.com/signup/).
+Follow their instructions, they
 are well-written. Then apply to join the Calamares team.
 Give us a shout on IRC or in a
 [Calamares issue](https://github.com/calamares/calamares/issues), so that we
@@ -24,7 +25,7 @@ Just do it. Please don't change keyboard shortcuts unless you
 really really have to (keyboard shortcuts can be recognized by having
 *&letter* in the string).
 
-## Getting Started
+## New Languages
 
 A new translation is added to Calamares when the team is created,
 but the language is not enabled for **use** in Calamares until
