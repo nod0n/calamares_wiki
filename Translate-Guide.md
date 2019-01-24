@@ -19,6 +19,9 @@ Give us a shout on IRC or in a
 [Calamares issue](https://github.com/calamares/calamares/issues), so that we
 know you want to join.
 
+A message on Transifex via their usual 
+[request-new-language workflow](https://www.transifex.com/calamares/calamares/languages/) will also work.
+
 ## Translation Guidelines
 
 Just do it. Please don't change keyboard shortcuts unless you
@@ -47,3 +50,27 @@ so that it is easy to see if the language works:
 
 These modules are generally enabled in every Calamares setup, so
 they are highly visible at the beginning and end of using Calamares.
+
+## Testing New Languages
+
+A new language is added to the *bad* list. That means that the translation
+is at 0% completion, not that the translation itself is bad. As the translation
+is completed, the language will be moved from one completion-status to another
+within the Calamares code.
+
+If you have a `.ts` file, you can test a new translation inside Calamares,
+but you must be able to compile Calamares (see the
+[developer's guide](Develop-Guide.md)
+) and you must **add** the language to the list that Calamares
+will support.
+
+ - Place the new translation file in the directory `lang/`. Usually this
+   means you will add a file called `calamares_`*language*`.ts`.
+ - Open `CMakeLists.txt` in a text editor.
+ - Scroll down to the section labeled *Transifex (languages) info*,
+   or search for `tx_good`.
+ - Add your language code to the list, e.g.
+   ```
+set( _tx_good MyNewLanguage es sq he hu )
+```
+ - Rebuild Calamares.
