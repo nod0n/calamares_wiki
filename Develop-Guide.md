@@ -79,46 +79,69 @@ Options that influence where Calamares is installed:
 
 # Quick deployment script
 
-The Calamares team maintains a quick and dirty deployment script, called uncerimoniously **`deploycala.py`**.
+The Calamares team maintains a quick and dirty deployment script, called 
+unceremoniously **`deploycala.py`**.
 
 This tool allows everyone to test the current state in any branch in the Calamares GitHub repository without having to manually build and/or repackage Calamares. It relies on an already existing and installed Calamares instance with all its dependencies, making it suitable for testing on a running Live system.
 
-**WARNING**: `deploycala.py` writes into `/usr` and `/etc` with impunity and no regard for package managers. Its only purpose is to quickly set up a Calamares testing and debugging environment on a live system immediately after booting from a live medium.<br>Keeping a long term working system is **not** a design goal.<br>Setting up a permanent development environment is **not** a design goal.<br>**Don't EVER run `deploycala.py` on a non-live system.**
+**WARNING**: `deploycala.py` writes into `/usr` and `/etc` with impunity and
+no regard for package managers. Its only purpose is to quickly set up a 
+Calamares testing and debugging environment on a live system immediately after 
+booting from a live medium.<br>Keeping a long term working system is **not** 
+a design goal.
+
+Setting up a permanent development environment is **not** a design goal.
+
+**Don't EVER run `deploycala.py` on a non-live system.**
 
 The tool is permanently hosted on ``calamares.io`` for convenience. It is very easy to get it up and running on a live system:
 ```
-$ curl -LO calamares.io/deploycala.py
-$ chmod +x deploycala.py
-$ ./deploycala.py
+$ curl -LO https://calamares.io/deploycala.py
+$ python3 deploycala.py
 ```
 
 ## Script usage
 
-See
+The script has a number of options and flags. Run it with the `--help`
+or `-h` flags to see a description.
+
+By default, `deploycala.py` updates all the packages on the system and 
+builds the master branch. I find myself mostly using it like this:
 ```
-$ ./deploycala.py -h
+$ python3 deploycala.py -n -N
 ```
 
-By default, `deploycala.py` updates all the packages on the system and builds the master branch. I find myself mostly using it like this:
-```
-$ ./deploycala.py -ni some_branch
-```
+The `-N` flag avoids downloading the script again (it auto-updates) and
+`-n` avoids doing a complete system update. This is a good combination
+to use with an up-to-date live CD.
 
 #### The good
-* On startup, it automatically updates itself from calamares.io before building.
+
+* On startup, it automatically updates itself from `calamares.io` before 
+  building, unless the `-N` flag is given.
 * Automatic detection of CPU core count for parallel make.
-* It checks out Calamares into a subdirectory "calamares" in the current directory. If the dir already exists, it will do a pull-rebase instead of a full clone.
+* It checks out Calamares into a subdirectory `calamares/` in the current 
+  directory. If the dir already exists, it will do a pull-rebase instead 
+  of a full clone.
 * Every build is a fresh build (unless you use `-i`).
 * Submodules are supported.
-* It will set up distributed builds with `icecream` if the relevant package can be found.
-* It will also set up `sudo-gdb`, Qt Creator and some other IDE configuration files.
+* It will set up distributed builds with `icecream` if the relevant 
+  package can be found.
+* It will also set up `sudo-gdb`, Qt Creator and some other IDE configuration 
+  files if the `--full-ide` flag is given.
 
 #### The bad
-* It only supports yaourt and pacman for dependency install right now, and is tested to work on Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS. Pull requests for other package managers are accepted.
+
+* It only supports a limited set of package managers for dependency 
+  installation, and contains a best-guess of the names of the 
+  development-packages needed for Calamares. It is tested to work on 
+  Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS. 
+  Pull requests for other package managers are accepted.
 * It backs up `/usr/share/calamares` and `/etc/calamares` as a whole, so inevitably upstream changes in configuration and/or branding format might break things. Caveat emptor.
 * It is noninteractive only as long as `sudo` is configured as `NOPASSWD` for the current user.
 
 #### The ugly
+
 * It's a Python script that happily writes into / and overwrites files owned by the package manager. It's been used successfully on Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS live systems to test changes immediately after pushing. Its purpose is **not** deployment for the end-user, but shortening a developer's code-build-push-test iteration.
 * It **will** happily and mercilessly break your system in various ways if you try to use it in any way beyond what's outlined above.
 * It is released in the hope that it might make your system integration tasks easier as well, but **without any warranty**.
