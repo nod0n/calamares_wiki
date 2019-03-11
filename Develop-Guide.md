@@ -157,7 +157,8 @@ to use with an up-to-date live CD.
 # Additional developer documentation
 
 In the wiki:
-* [Design Notes](Design-Notes)
+* [Design Notes](Develop-Design)
+* [Global Storage reference](Develop-GlobalStorage)
 
 In the source:
 * [HACKING file](https://github.com/calamares/calamares/blob/master/ci/HACKING.md)
