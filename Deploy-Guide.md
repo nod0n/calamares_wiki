@@ -56,6 +56,8 @@ These are documented in the next two sections.
 All OEM modes are enabled by setting the *dont-chroot* key in
 `settings.conf` to the value *true*.
 
+[OEM Configuration Guide](Deploy-OEM).
+
 ## Known Issues
 
 > These are (historically) documented known "gotchas" when deploying
