@@ -137,19 +137,32 @@ to use with an up-to-date live CD.
   development-packages needed for Calamares. It is tested to work on 
   Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS. 
   Pull requests for other package managers are accepted.
-* It backs up `/usr/share/calamares` and `/etc/calamares` as a whole, so inevitably upstream changes in configuration and/or branding format might break things. Caveat emptor.
+* It backs up `/usr/share/calamares` and `/etc/calamares` as a whole, so
+  inevitably upstream changes in configuration and/or branding format
+  might break things. Caveat emptor.
 * It is noninteractive only as long as `sudo` is configured as `NOPASSWD` for the current user.
 
 #### The ugly
 
-* It's a Python script that happily writes into / and overwrites files owned by the package manager. It's been used successfully on Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS live systems to test changes immediately after pushing. Its purpose is **not** deployment for the end-user, but shortening a developer's code-build-push-test iteration.
-* It **will** happily and mercilessly break your system in various ways if you try to use it in any way beyond what's outlined above.
-* It is released in the hope that it might make your system integration tasks easier as well, but **without any warranty**.
+* It's a Python script that happily writes into / and overwrites files owned
+  by the package manager. It's been used successfully on Chakra Linux,
+  Netrunner Rolling, Manjaro KDE and KaOS live systems to test changes
+  immediately after pushing. Its purpose is **not** deployment for the end-user,
+  but shortening a developer's code-build-push-test iteration.
+* It **will** happily and mercilessly break your system in various ways if you
+  try to use it in any way beyond what's outlined above.
+* It is released in the hope that it might make your system integration tasks
+  easier as well, but **without any warranty**.
 
 # Additional developer documentation
 
-* [GlobalStorage keys reference](GlobalStorage keys reference)
+In the wiki:
 * [Design Notes](Design-Notes)
-* [HACKING file](https://github.com/calamares/calamares/blob/master/HACKING.md) - kept in master, includes code style guidelines, best practices, etc.
-* [astyle configuration](https://github.com/calamares/calamares/tree/master/hacking)
-* [RELEASE instructions](https://github.com/calamares/calamares/blob/master/hacking/RELEASE.md)
+
+In the source:
+* [HACKING file](https://github.com/calamares/calamares/blob/master/ci/HACKING.md)
+  includes code style guidelines, best practices, etc.
+* [astyle configuration](https://github.com/calamares/calamares/blob/master/ci/astylerc)
+* [RELEASE instructions](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
+  and [script](https://github.com/calamares/calamares/blob/master/ci/RELEASE.sh)
+* [Module descriptors](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
