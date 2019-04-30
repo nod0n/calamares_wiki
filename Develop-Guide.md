@@ -15,6 +15,15 @@ for information on how to quickly install a development environment on
 most **live** CD systems (not recommended for installed systems outside
 of development-VMs).
 
+Calamares needs Qt5 development headers, KPMcore development headers,
+YAML-CPP development headers, Python libraries and development headers, 
+Boost::Python libraries and development headers, and more.
+
+Seriously, use `deploycala.py`. If your distro is delivered without
+Python3 (e.g. BSD derivatives), use `deploycala-bsd.sh` from roughly
+the same URL.
+
+
 # How to build Calamares
 
 Clone Calamares from GitHub, run CMake, and compile it:
@@ -51,31 +60,46 @@ VM, or a live CD which doesn't use Calamares yet), you will need to copy
 
 ## Supported variables for CMake
 
-Options that influence what parts of Calamares are built:
+There are many CMake-level options that influence the Calamares
+build. Most general are the CMake- and KDE Extra-CMake-Modules
+variables, 
 
-* `WITH_KF5Crash` - improved crash reporting, compatible with Dr. Konqui.
-  Default is true.
-* `WITH_PYTHON` - if this is set to false, the Python module interface will 
-  not be built. Default is true. (Python is optional, but strongly recommended)
-* `WITH_PYTHONQT` - if this is set to false, the PythonQT module interface will
-  bot be built. Default is true. (PythonQt is optional)
-* `SKIP_MODULES` - takes a space-separated list of module names that should 
-  not be built even if present in `src/modules`. Default is empty.
-  For example,  `cmake -DSKIP_MODULES="partition mount umount welcome" ..`
-  builds Calamares without partitioning, mounting or the welcome module.
-  Some modules automatically disable themselves if their dependencies
-  are not found. Disabled modules are listed at the end of CMake's output.
-* `BUILD_TESTING` - if this is set to true, then test-applications and tools
-  are built, along with the main Calamares executable and modules. Default
-  is true. The test-applications are not installed or packaged, and can
-  be found in the build directory (for testing purposes).
-
-Options that influence where Calamares is installed:
+* `CMAKE_BUILD_TYPE` influences build flags.
 * `CMAKE_INSTALL_PREFIX` can be set to a prefix where Calamares and its
   tools will be installed. By default, Calamares follows the GNU InstallDirs
   conventions.
 * `KDE_INSTALL_USE_QT_SYS_PATHS` if set to true, prefers to install to
   Qt paths rather than system paths.
+
+Calamares-specific variables can be divided into three categories:
+
+* `WITH_*` specifies whether (optional) dependencies will be used.
+* `BUILD_*` specifies what additional parts to build (in particular,
+  testing).
+* `DEBUG_*` turns on specific and annoying debugging for parts of
+  the application.
+
+Calamares has nearly 50 modules. Not all of them are necessary.
+Those that have missing dependencies will not be built, but
+you can skip modules with two mechanisms:
+
+* `SKIP_MODULES` takes a space-separated list of module names that should 
+  not be built even if present in `src/modules`. Default is empty.
+  For example,  `cmake -DSKIP_MODULES="partition mount umount welcome" ..`
+  builds Calamares without partitioning, mounting or the welcome module.
+* `USE_*` when multiple modules exist that are basically incompatible,
+  like the services-systemd module and the services-openrc module (no
+  installation will have both systemd and openrc), the `USE_*` variables
+  can select one of them; this is added to the `SKIP_MODULES` setting.
+  For instance, `USE_services=systemd` will add all **other** services-
+  modules to `SKIP_MODULES`.
+
+Some modules automatically disable themselves if their dependencies
+are not found. Disabled modules are listed at the end of CMake's output.
+
+The **definitive documentation** of CMake variables is at the top
+of [CMakeLists.txt](https://github.com/calamares/calamares/blob/master/CMakeLists.txt).
+
 
 # Quick deployment script
 
@@ -153,6 +177,7 @@ to use with an up-to-date live CD.
   try to use it in any way beyond what's outlined above.
 * It is released in the hope that it might make your system integration tasks
   easier as well, but **without any warranty**.
+
 
 # Additional developer documentation
 
