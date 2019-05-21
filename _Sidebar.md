@@ -2,6 +2,7 @@
 - [Guide](Deploy-Guide)
 - [Known Issues](Deploy-Issues)
 - [Configuration](Deploy-Configuration)
+- [OEM Mode](Deploy-OEM)
 
 # Develop
 - [Guide](Develop-Guide)

@@ -7,13 +7,16 @@
 > Calamares for system installation -- should be configuring
 > the application.
 
+The primary documentation for Calamares configuration is in the
+source code and the configuration files themselves. The source
+code contains two overview files:
+
 * [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
 * [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
-* [Known Issues](Deploy-Issues)
 
-_Distro-specific deployment information may be added in pages linked from_
-_here, and it must clearly be declared as such._
-
+This guide contains high-level documentation on configuration and
+deployment but for details you will have to consult the configuration
+files for individual parts of Calamares.
 
 ## Configuring Calamares
 
@@ -36,10 +39,6 @@ Starting with Calamares 3.2.2, the sample configuration files are no
 longer installed by default (the option `INSTALL_CONFIG` is now switched
 off).
 
-## LUKS deployment
-
-See article: [LUKS deployment advice](Deploy-LUKS).
-
 ## OEM Modes
 
 Calamares supports so-called "OEM mode", which can be used when an OEM
@@ -57,6 +56,57 @@ All OEM modes are enabled by setting the *dont-chroot* key in
 `settings.conf` to the value *true*.
 
 [OEM Configuration Guide](Deploy-OEM).
+
+## Styling Calamares
+
+> Calamares follows the desktop styling if the Qt Platform does so.
+> There is additional styling which can be applied through the
+> Branding module and stylesheets.
+
+The [Branding configuration][branding.desc] sets a few style parameters --
+window behavior and colors and icons. Using only that file, Calamares
+will largely follow the desktop styling.
+
+It is possible to style Calamares at a much more fine-grained level
+using Qt Stylesheets. These are basically CSS styles where the CSS
+selectors apply to widget classes or specific widgets.
+
+An overview of Qt Stylesheets is [here][https://doc.qt.io/qt-5/stylesheet-examples.html].
+
+If a branding component ships a `stylesheet.qss` next to the `branding.desc`
+file, that stylesheet will be loaded and used by Calamares.
+
+Class selectors can be applied in Calamares, and the following
+stylesheet makes all the combo-boxes in the application green:
+```
+QComboBox { background: green; }
+QComboBox QAbstractItemView { background: lightgreen; }
+```
+
+Individual widgets can also be styled by using their name as CSS id.
+The [example `stylesheet.qss`][stylesheet.qss] lists many top-level
+widgets that can be styled, such as:
+ - *mainApp* The top-level window
+ - *sidebarApp* The application's sidebar (progress tree, on the left)
+ - *logoApp* The application logo (top-left)
+Some modules also have named widgets, such as the *partition* and *license*
+modules.
+
+For **debugging** purposes and for trying out styles, the *debug window*
+can be used. The *tools* tag contains (as of Calamares 3.2.9) these buttons:
+ - *reload stylesheet* which does what it says: reloads the stylesheet file
+   and applies it to the application. This can be used to test changes in
+   the stylesheet without re-starting Calamares.
+ - *widget tree* which dumps the names of all the widgets in the application
+   to the log file (usually `session.log`, or to standard output). This can
+   help to find out the name of a particular widget which you wish to style.
+
+[stylesheet.qss]: https://github.com/calamares/calamares/blob/master/src/branding/default/stylesheet.qss
+[branding.desc]: https://github.com/calamares/calamares/blob/master/src/branding/default/branding.desc
+
+## LUKS deployment
+
+See article: [LUKS deployment advice](Deploy-LUKS).
 
 ## Known Issues
 
