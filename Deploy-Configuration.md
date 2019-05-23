@@ -50,16 +50,16 @@ See [`settings.conf`][settings.conf] for details.
 For internal actions, there are different kinds of Calamares modules
 which differ in how they are configured. These can be used to run
 commands or perform changes to the target system during installation:
- - Always executing one command (*process* modules). Using this
-   means creating a new module directory under `$USC/modules` with a
-   suitable `module.desc` file that defines the command to run. This
-   is no longer recommended.
  - Always executing one or more commands (*shellprocess* instances).
    Using this means defining an instance in `settings.conf` and
    adding a suitable configuration file with the list of commands
    to the configuration directory, e.g. to `$USC/modules/shellprocess`.
-   This has the (slight) advantage that it does require intermediate
-   directories, and has better error handling.
+   This does require intermediate directories, but allows fine-grained
+   error handling. It makes sense to have multiple *shellprocess*
+   instances, each with their own list of commands in their own
+   configuration file (e.g. `shellprocess-preboot.conf` and a
+   `shellprocess-erase.conf` for instances `shellprocess@preboot`
+   and `shellprocess@erase`, which are listed somewhere in the sequence).
  - Conditionally executing one or more commands (*contextualprocess*
    instances). This needs an instance and a configuration file
    describing which conditions (expressed as values in the Calamares
