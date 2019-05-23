@@ -20,10 +20,32 @@ included with Calamares for production use -- they are examples.
 ## Calamares Settings
 
 At a high level, the [`settings.conf`][settings.conf]
-file defines a **sequence** of things
+file defines a *sequence* of things
 to do (actions) during an installation. This defines the order in which
 user-visible actions are taken (e.g. configuring the timezone) as well as
 internal actions (e.g. installing the bootloader).
+
+The sequence itself is split into a *show* and *exec* sections:
+the *show* parts are user-visible, and then *exec* does the work.
+During each *exec* section, the branding slideshow is displayed,
+and before each *exec* section, the user may be prompted to
+allow to continue the process. Normal installations have a
+*show* section for user interaction, and then a single *exec* section,
+and then a *show* section with only the "finished" module.
+
+A viewmodule like "users" has a user-visible part for collecting
+information, and **may** also have a non-interactive part to do the actual
+work. Some viewmodules are therefore listed twice: once in a *show*
+section and once in an *exec* section.
+
+A viewmodule in an *exec* section will not show a UI.
+
+A section names module instances. Most modules are simply
+listed as `<modulename>`, which means the same as `<modulename>@<modulename>`
+and uses the configuration file `<modulename>.conf`. It is possible
+to define specific module instances (for instance, to run the same
+module multiple times with different configuration files).
+See [`settings.conf`][settings.conf] for details.
 
 For internal actions, there are different kinds of Calamares modules
 which differ in how they are configured. These can be used to run
