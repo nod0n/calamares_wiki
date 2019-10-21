@@ -84,8 +84,8 @@ will support.
    or search for `tx_good`.
  - Add your language code to the list, e.g.
    ```
-set( _tx_good MyNewLanguage es sq he hu )
-```
+   set( _tx_good MyNewLanguage es sq he hu )
+   ```
  - Rebuild Calamares.
  - Run Calamares and pick the language from the drop-down, or set the *LANG*
    environment variable to test if Calamares starts up natively.
