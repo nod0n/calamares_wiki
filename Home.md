@@ -7,6 +7,14 @@
 > system, which might be used by a distro as a basis for their own installer
 > documentation.
 
+For Calamares, *universal* means that Calamares can be configured
+for any Linux distribution to act as installer for that distribution's
+ISO and memory-stick images. It does **not** mean that
+Calamares, as provided in source, can install any Linux.
+*Users* of Calamares are the people who make the distribution
+images, not the people who eventually install those images
+(although there's a [user's guide](Use-Guide) too).
+
 ## Support
 
 * [Bug Reports](https://github.com/calamares/calamares/issues)
