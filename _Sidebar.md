@@ -7,6 +7,7 @@
 # Develop
 - [Guide](Develop-Guide)
 - [Code](Develop-Code)
+- [GitHub](Develop-GitHub)
 - [Design](Develop-Design)
 - [Global Storage](Develop-GlobalStorage)
 
