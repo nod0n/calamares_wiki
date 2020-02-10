@@ -1,7 +1,13 @@
 # Calamares
 
+[![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
+[![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
+[![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
+
 > [Calamares](https://calamares.io/) is the universal installer framework.
-> This wiki is for *developers* working on Calamares, and for *deployers*
+> This wiki is for *contributors* to Calamares: the
+> *translators*, *developers*, and *deployers*
 > using Calamares as a framework / application for installing a Linux system.
 > There is also generic *user* documentation that applies to installing-your-
 > system, which might be used by a distro as a basis for their own installer
