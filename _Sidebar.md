@@ -6,6 +6,7 @@
 
 # Develop
 - [Guide](Develop-Guide)
+- [Code](Develop-Code)
 - [Design](Develop-Design)
 - [Global Storage](Develop-GlobalStorage)
 

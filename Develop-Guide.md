@@ -192,13 +192,13 @@ to use with an up-to-date live CD.
 # Additional developer documentation
 
 In the wiki:
+* [Coding Style](Develop-Code)
 * [Design Notes](Develop-Design)
 * [Global Storage reference](Develop-GlobalStorage)
 
 In the source:
-* [HACKING file](https://github.com/calamares/calamares/blob/master/ci/HACKING.md)
-  includes code style guidelines, best practices, etc.
 * [astyle configuration](https://github.com/calamares/calamares/blob/master/ci/astylerc)
+* [clang-format](https://github.com/calamares/calamares/blob/master/.clang-format)
 * [RELEASE instructions](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
   and [script](https://github.com/calamares/calamares/blob/master/ci/RELEASE.sh)
 * [Module descriptors](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
