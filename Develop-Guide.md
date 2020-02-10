@@ -46,17 +46,27 @@ $ ./calamares -d
 $ sudo ./calamares -d
 $ pkexec ./calamares -d
 ```
+
 To start it in `gdb`:
 ```
 $ sudo gdb ./calamares
 (gdb) run -d
 ```
-When running Calamares with the `-d` parameter, it will also pick up a 
+
+When running Calamares with the `-d` parameter, it will pick up a
 `settings.conf` placed in the `build` directory (if present), and it will 
 show the debug information interface in the bottom left area of the main window.
 In a system with no Calamares configuration installed (e.g. a development
 VM, or a live CD which doesn't use Calamares yet), you will need to copy
 `settings.conf` from the top-level source directory into the build directory.
+
+The source comes with configuration files that are a bit silly, but serve
+to demonstrate the whole system. You can copy the example `settings.conf`
+into the build-directory:
+```
+$ cp ../settings.conf .
+```
+
 
 ## Supported variables for CMake
 
