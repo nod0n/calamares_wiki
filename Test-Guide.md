@@ -66,6 +66,41 @@ want to test and how your distribution is set up.
     $ ./calamares -d  # As regular user
 ```
 
+## Standalone module tests
+
+You can test a single module **outside** of Calamares, without
+running Calamares at all, with the `loadmodule` test-executable.
+For this, you will have to have [built Calamares](Develop-Guide).
+Go to the build directory (the regular instructions put that
+at `build/` in the source directory).
+
+To load a single module without a UI, use:
+```
+    $ ./loadmodule <modulename>
+```
+Fill in the name of the module to test instead of `<modulename>`,
+e.g. *dummycpp*. The jobs associated with the module are run, in order,
+as if Calamares had listed that module in the *exec* section of
+the configuration. Watch out for side effects!
+
+To load a single module with a UI, use:
+```
+    $ ./loadmodule --ui <modulename>
+```
+The usual module interface is shown as if the module was listed in
+the *show* section of the configuration. The window might not be exactly
+the same size as usual, since the navigation controls are missing.
+
+Command-line options `-g <filename>` and `-j <filename>` can feed the module a specific
+global configuration or a specific job configuration.
+
+Use `-l <lang>` to specify a language to start the module in, if
+it should be different from the system language. This can be helpful
+when checking translations.
+
+Use `-b <dir>/branding.desc` to set a different branding directory. This can be helpful
+when testing new branding styles.
+
 ## Testing the slide show
 
 Developing the slideshow which is shown during the (long, slow) installation
@@ -83,6 +118,48 @@ The slide show lives in the branding module. The default slide show is in
 When editing the slide show, make a copy to your own branding directory,
 and remember to keep editing the file there. Copy the file into the build
 directory for testing.
+
+### Standalone slide show tests
+
+The `loadmodule` test-executable can also display the slideshow,
+with some fake jobs running while the slideshow is displayed.
+Use the `-s` flag to run the slideshow:
+```
+    $ ./loadmodule -s
+```
+The `-l` and `-b` options affect branding and language as described
+above under [standalone module tests](#standalone-module-tests).
+The `-j` flag is not useful because there are no (non-fake) jobs to configure.
+
+The `-g` flag can be used to set up specific fake jobs with a fixed duration
+through global settings;
+if no global settings are provided, nine (9) fake jobs are added with
+varying durations, suitable for seeing through a slideshow of up to a minute.
+
+To create custom fake-job timing for the slideshow, create a file
+for the global settings (e.g. `slideshow.global`) and then pass
+that with the `-g` flag:
+```
+    $ ./loadmodule -g slideshow.global -s
+```
+Bear in mind that the actual **slideshow** settings come from the
+branding directory; these slideshow settings are just for the jobs
+and the timing.
+
+The format for a fake-jobs global file is:
+```
+---
+jobs:
+    - name: first job name
+      delay: 2
+    - name: next job
+      delay: 22
+```
+Additional global data maybe specified as well, but the important thing
+is that *jobs* must be a list, and each item in the list needs a *name*
+(which is the string that will be displayed while that job is running)
+and a *delay* (in seconds, for how long the job should take). A delay of 0
+is legal and will result in an instantaneous job.
 
 ### Reduced configuration
 
