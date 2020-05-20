@@ -46,8 +46,8 @@ Much of the technical documentation is in README files in the
 source code, though, where it is much closer to the things it
 documents. Of particular interest is the `/ci/` directory, which is where things-that-are-not-Calamares-itself but related to Calamares development (like the Continuous Integration scripts, like translation tools, and development documentation) end up.
 
-* [Coding Style](https://github.com/calamares/calamares/blob/master/ci/HACKING.md)
-* [Release Process](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
+* [Coding Style](Develop-Code)
+* [Release Process :clipboard:](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
 
 ## Tester's Guide
 
