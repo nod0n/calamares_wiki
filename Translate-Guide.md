@@ -4,9 +4,9 @@ Calamares uses [Transifex](https://www.transifex.com/) as its translation
 inrfastructure.
 The [project overview](https://www.transifex.com/calamares/calamares/) for Calamares
 shows which languages exist and how translated they are.
-Translations are (semi-)regularly updated from the *master*
+Translations are (semi-)regularly updated from the *calamares* (development)
 branch of Calamares and sent to Transifex; updated translations are
-imported into the same *master* branch.
+imported into the same *calamares* branch.
 
 This means that stable releases don't get translation updates --
 I have not thought of a good way to do that with one Calamares
@@ -113,7 +113,7 @@ In general:
 
 The compilation process looks like this:
 ```
-$ lrelease calamares_en.ts 
+$ lrelease calamares_en.ts
 Updating 'calamares_en.qm'...
     Generated 609 translation(s) (607 finished and 2 unfinished)
     Ignored 2 untranslated source text(s)

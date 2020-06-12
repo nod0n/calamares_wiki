@@ -91,12 +91,12 @@ In the table below, `$USC` means that directory.
 | [`locale.conf`][locale.conf] | | Locale and TimeZone configuration. GeoIP settings. |
 | [`partition.conf`][partition.conf] | | Configuration for (automatic) partitioning and swap |
 
-[modules]: https://github.com/calamares/calamares/blob/master/src/modules
-[settings.conf]: https://github.com/calamares/calamares/blob/master/settings.conf
-[branding.desc]: https://github.com/calamares/calamares/blob/master/src/branding/default/branding.desc
-[displaymanager.conf]: https://github.com/calamares/calamares/blob/master/src/modules/displaymanager/displaymanager.conf
-[locale.conf]: https://github.com/calamares/calamares/blob/master/src/modules/locale/locale.conf
-[partition.conf]: https://github.com/calamares/calamares/blob/master/src/modules/partition/partition.conf
+[modules]: https://github.com/calamares/calamares/blob/calamares/src/modules
+[settings.conf]: https://github.com/calamares/calamares/blob/calamares/settings.conf
+[branding.desc]: https://github.com/calamares/calamares/blob/calamares/src/branding/default/branding.desc
+[displaymanager.conf]: https://github.com/calamares/calamares/blob/calamares/src/modules/displaymanager/displaymanager.conf
+[locale.conf]: https://github.com/calamares/calamares/blob/calamares/src/modules/locale/locale.conf
+[partition.conf]: https://github.com/calamares/calamares/blob/calamares/src/modules/partition/partition.conf
 
 
 
@@ -121,8 +121,8 @@ sudo /usr/bin/calamares -d > installation.log
 ```
 
 This example shows the option to not show the License page if free graphics drivers are in use.  It also shows creating an installation.log in the user's home directory.
-Such a script can be used in the default calamares.desktop, 
-simply use a sed line to replace `Exec=pkexec /usr/bin/calamares` with 
+Such a script can be used in the default calamares.desktop,
+simply use a sed line to replace `Exec=pkexec /usr/bin/calamares` with
 `Exec=/usr/bin/launch-calamares.sh`.
 
 ### How to integrate Calamares with the used system style and theme?
@@ -139,7 +139,7 @@ simply use a sed line to replace `Exec=pkexec /usr/bin/calamares` with
    The `-E` flag may preserve sufficient environment to keep styling.
  - *Applying specific themes*
 
-   You can use the stylesheets (via Calamares branding) and whatever 
+   You can use the stylesheets (via Calamares branding) and whatever
    environment is available in the user-that-runs-Calamares (e.g. root)
    for specific styling of Calamares, rather than integrating in the
    source user environment.

@@ -11,8 +11,8 @@ The primary documentation for Calamares configuration is in the
 source code and the configuration files themselves. The source
 code contains two overview files:
 
-* [Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
-* [Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
+* [Working with modules](https://github.com/calamares/calamares/blob/calamares/src/modules/README.md)
+* [Setting up branding](https://github.com/calamares/calamares/blob/calamares/src/branding/README.md)
 
 This guide contains high-level documentation on configuration and
 deployment but for details you will have to consult the configuration
@@ -101,8 +101,8 @@ can be used. The *tools* tag contains (as of Calamares 3.2.9) these buttons:
    to the log file (usually `session.log`, or to standard output). This can
    help to find out the name of a particular widget which you wish to style.
 
-[stylesheet.qss]: https://github.com/calamares/calamares/blob/master/src/branding/default/stylesheet.qss
-[branding.desc]: https://github.com/calamares/calamares/blob/master/src/branding/default/branding.desc
+[stylesheet.qss]: https://github.com/calamares/calamares/blob/calamares/src/branding/default/stylesheet.qss
+[branding.desc]: https://github.com/calamares/calamares/blob/calamares/src/branding/default/branding.desc
 
 ## LUKS deployment
 
