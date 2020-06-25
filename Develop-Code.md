@@ -10,13 +10,25 @@ important thing is to know when you can ignore them.
 Calamares is released under the terms of the GNU GPL, version 3 or later.
 Every source file must have a license header, with a list of copyright holders and years.
 
+Calamares uses [SPDX](https://spdx.org/) identifiers in headers (when they are updated
+in 2020) and tries to follow the [Reuse Software](https://reuse.software/) best-practices
+for license annotation.
+
 Example:
 ```
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2013-2014, Random Person <name@example.com>
- *   Copyright 2010,      Someone Else <someone@example.com>
- *
+ *   SPDX-FileCopyrightText: 2013-2014 Random Person <name@example.com>
+ *   SPDX-FileCopyrightText: 2010 Someone Else <someone@example.com>
+ *   SPDX-License-Identifier: GPL-3.0-or-later
+ *   License-Filename: LICENSE
+ */
+```
+
+It is **optional** (but you really shouldn't) to include some more
+license text; most of the older Calamares files do that:
+```
+/*
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
@@ -39,9 +51,11 @@ organization, etc.
 Please add your name to files you touch when making any contribution (even if
 it's just a typo-fix which might not be copyrightable in all jurisdictions).
 
-Calamares uses [SPDX](https://spdx.org/) identifiers in headers (when they are updated
-in 2020) and tries to follow the [Reuse Software](https://reuse.software/) best-practices
-for license annotation.
+- *Do* add your name when fixing things.
+- *Don't* update years randomly; just use the current year when you
+  add yourself to a file for the first time.
+- *Do* make sure the license-identifier and license-filename are correct;
+  not everything is GPLv3.
 
 ### Exceptions in Licensing
 
@@ -66,18 +80,19 @@ This formatting guide applies to C++ code only.
 * Spaces, not tabs.
 * Indentation is 4 spaces.
 * Lines should be limited to 90 characters.
-* Spaces between brackets and argument functions, including for template arguments
+* Spaces between brackets and argument functions, including for template arguments.
 * No space before brackets, except for keywords, for example `function( argument )` but
   `if ( condition )`.
 * For pointer and reference variable declarations, put a space before the variable name
   and no space between the type and the `*` or `&`, e.g. `int* p`.
-* `for`, `if`, `else`, `while` and similar statements put the braces on the next line,
-  if the following block is more than one statement. Always use braces.
+* `for`, `if`, `else`, `while` and similar statements put the braces on
+  the next line. Always use braces.
 * Function and class definitions have their braces on separate lines.
 * A function implementation's return type is on its own line.
 * `CamelCase.{cpp,h}` style file names.
 * Lambdas are preferrably indented to a 4-space tab, even when passed as an
   argument to functions.
+* Use C++14 features; avoid `foreach`, for instance.
 
 Example:
 ```
@@ -85,11 +100,14 @@ bool
 MyClass::myMethod( QStringList list, const QString& name )
 {
     if ( list.isEmpty() )
+    {
         return false;
-
+    }
     cDebug() << "Items in list ..";
-    foreach ( const QString& string, list )
+    for ( const QString& string : list )
+    {
         cDebug() << "  .." << string;
+    }
 
     switch ( m_enumValue )
     {
@@ -163,13 +181,13 @@ Use include guards, not `#pragma once`. Use "namespaced" include guards.
 
 ### C++ tips
 
-All C++11 and C++14 features are acceptable, and the use of new C++11 features is encouraged when
+All C++11 and C++14 features are acceptable, and the use of new C++14 features is encouraged when
 it makes the code easier to understand and more maintainable.
 
 The use of `nullptr` is preferred over the use of `0` or `NULL`.
 
-For Qt containers it is better to use Qt's own `foreach`. For all other containers, the
-range-based `for` syntax introduced with C++11 is preferred ([see this blog post][1]).
+For all containers, the
+range-based `for` syntax introduced with C++11 is preferred.
 
 When re-implementing a virtual method, always add the `override` keyword.
 
@@ -192,9 +210,7 @@ connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
 });
 ```
 
-[1]: http://blog.qt.digia.com/blog/2011/05/26/cpp0x-in-qt/
-[2]: http://qt-project.org/wiki/New_Signal_Slot_Syntax
-
+[2]: https://wiki.qt.io/New_Signal_Slot_Syntax
 
 ## Python Style
 
@@ -222,6 +238,9 @@ in particular listing things, conventional formatting is as follows:
 
 For single-outputs that need to be split across multiple lines,
 output `Logger::Continuation`.
+
+There are a bunch of convenience items in the `Logger` namespace,
+see the header for more details.
 
 
 ### Python Logging
