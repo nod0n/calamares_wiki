@@ -55,7 +55,7 @@ or give a shout on IRC when things have been updated.
 The **first strings** to translate are the `.desktop` file and a few
 common Calamares modules.
 Use Transifex's filters to pick strings from those modules:
-view strings in the *calamares-master* repository,
+view strings in the *calamares* resource,
 then click *more* in the tab-bar of filters along the top of the list,
 and then click *occurrence* and enter a filter-string from the list below.
 These strings show up early in the application,

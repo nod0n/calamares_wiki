@@ -4,7 +4,7 @@
 
 # Pre-requisites
 
-Calamares is a C++ program. It uses the Qt libraries. It may use KDE 
+Calamares is a C++ program. It uses the Qt libraries. It may use KDE
 Frameworks libraries. You will need those installed on your development
 system in order to work on Calamares. You may need additional tools,
 such as a text-editor, the git reversion-control system, Qt Designer,
@@ -16,7 +16,7 @@ most **live** CD systems (not recommended for installed systems outside
 of development-VMs).
 
 Calamares needs Qt5 development headers, KPMcore development headers,
-YAML-CPP development headers, Python libraries and development headers, 
+YAML-CPP development headers, Python libraries and development headers,
 Boost::Python libraries and development headers, and more.
 
 Seriously, use `deploycala.py`. If your distro is delivered without
@@ -38,8 +38,8 @@ $ make
 See below for a list of CMake variables that influence the Calamares
 build and optional components.
 
-This will give you a debug build of Calamares, with debug symbols. 
-It can then be run straight from the `build` directory without installing in 
+This will give you a debug build of Calamares, with debug symbols.
+It can then be run straight from the `build` directory without installing in
 one of the following ways:
 ```
 $ ./calamares -d
@@ -54,7 +54,7 @@ $ sudo gdb ./calamares
 ```
 
 When running Calamares with the `-d` parameter, it will pick up a
-`settings.conf` placed in the `build` directory (if present), and it will 
+`settings.conf` placed in the `build` directory (if present), and it will
 show the debug information interface in the bottom left area of the main window.
 In a system with no Calamares configuration installed (e.g. a development
 VM, or a live CD which doesn't use Calamares yet), you will need to copy
@@ -72,7 +72,7 @@ $ cp ../settings.conf .
 
 There are many CMake-level options that influence the Calamares
 build. Most general are the CMake- and KDE Extra-CMake-Modules
-variables, 
+variables,
 
 * `CMAKE_BUILD_TYPE` influences build flags.
 * `CMAKE_INSTALL_PREFIX` can be set to a prefix where Calamares and its
@@ -93,7 +93,7 @@ Calamares has nearly 50 modules. Not all of them are necessary.
 Those that have missing dependencies will not be built, but
 you can skip modules with two mechanisms:
 
-* `SKIP_MODULES` takes a space-separated list of module names that should 
+* `SKIP_MODULES` takes a space-separated list of module names that should
   not be built even if present in `src/modules`. Default is empty.
   For example,  `cmake -DSKIP_MODULES="partition mount umount welcome" ..`
   builds Calamares without partitioning, mounting or the welcome module.
@@ -108,20 +108,20 @@ Some modules automatically disable themselves if their dependencies
 are not found. Disabled modules are listed at the end of CMake's output.
 
 The **definitive documentation** of CMake variables is at the top
-of [CMakeLists.txt](https://github.com/calamares/calamares/blob/master/CMakeLists.txt).
+of [CMakeLists.txt](https://github.com/calamares/calamares/blob/calamares/CMakeLists.txt).
 
 
 # Quick deployment script
 
-The Calamares team maintains a quick and dirty deployment script, called 
+The Calamares team maintains a quick and dirty deployment script, called
 unceremoniously **`deploycala.py`**.
 
 This tool allows everyone to test the current state in any branch in the Calamares GitHub repository without having to manually build and/or repackage Calamares. It relies on an already existing and installed Calamares instance with all its dependencies, making it suitable for testing on a running Live system.
 
 **WARNING**: `deploycala.py` writes into `/usr` and `/etc` with impunity and
-no regard for package managers. Its only purpose is to quickly set up a 
-Calamares testing and debugging environment on a live system immediately after 
-booting from a live medium.<br>Keeping a long term working system is **not** 
+no regard for package managers. Its only purpose is to quickly set up a
+Calamares testing and debugging environment on a live system immediately after
+booting from a live medium.<br>Keeping a long term working system is **not**
 a design goal.
 
 Setting up a permanent development environment is **not** a design goal.
@@ -139,8 +139,8 @@ $ python3 deploycala.py
 The script has a number of options and flags. Run it with the `--help`
 or `-h` flags to see a description.
 
-By default, `deploycala.py` updates all the packages on the system and 
-builds the master branch. I find myself mostly using it like this:
+By default, `deploycala.py` updates all the packages on the system and
+builds the *calamares* (default) branch. I find myself mostly using it like this:
 ```
 $ python3 deploycala.py -n -N
 ```
@@ -151,25 +151,25 @@ to use with an up-to-date live CD.
 
 #### The good
 
-* On startup, it automatically updates itself from `calamares.io` before 
+* On startup, it automatically updates itself from `calamares.io` before
   building, unless the `-N` flag is given.
 * Automatic detection of CPU core count for parallel make.
-* It checks out Calamares into a subdirectory `calamares/` in the current 
-  directory. If the dir already exists, it will do a pull-rebase instead 
+* It checks out Calamares into a subdirectory `calamares/` in the current
+  directory. If the dir already exists, it will do a pull-rebase instead
   of a full clone.
 * Every build is a fresh build (unless you use `-i`).
 * Submodules are supported.
-* It will set up distributed builds with `icecream` if the relevant 
+* It will set up distributed builds with `icecream` if the relevant
   package can be found.
-* It will also set up `sudo-gdb`, Qt Creator and some other IDE configuration 
+* It will also set up `sudo-gdb`, Qt Creator and some other IDE configuration
   files if the `--full-ide` flag is given.
 
 #### The bad
 
-* It only supports a limited set of package managers for dependency 
-  installation, and contains a best-guess of the names of the 
-  development-packages needed for Calamares. It is tested to work on 
-  Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS. 
+* It only supports a limited set of package managers for dependency
+  installation, and contains a best-guess of the names of the
+  development-packages needed for Calamares. It is tested to work on
+  Chakra Linux, Netrunner Rolling, Manjaro KDE and KaOS.
   Pull requests for other package managers are accepted.
 * It backs up `/usr/share/calamares` and `/etc/calamares` as a whole, so
   inevitably upstream changes in configuration and/or branding format
@@ -197,8 +197,8 @@ In the wiki:
 * [Global Storage reference](Develop-GlobalStorage)
 
 In the source:
-* [astyle configuration](https://github.com/calamares/calamares/blob/master/ci/astylerc)
-* [clang-format](https://github.com/calamares/calamares/blob/master/.clang-format)
-* [RELEASE instructions](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
-  and [script](https://github.com/calamares/calamares/blob/master/ci/RELEASE.sh)
-* [Module descriptors](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
+* [astyle configuration](https://github.com/calamares/calamares/blob/calamares/ci/astylerc)
+* [clang-format](https://github.com/calamares/calamares/blob/calamares/.clang-format)
+* [RELEASE instructions](https://github.com/calamares/calamares/blob/calamares/ci/RELEASE.md)
+  and [script](https://github.com/calamares/calamares/blob/calamares/ci/RELEASE.sh)
+* [Module descriptors](https://github.com/calamares/calamares/blob/calamares/src/modules/README.md)

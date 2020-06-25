@@ -1,9 +1,9 @@
 # Calamares
 
 [![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
-[![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
+[![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=calamares)](https://travis-ci.org/calamares/calamares)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
-[![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/calamares/LICENSE)
 
 > [Calamares](https://calamares.io/) is the universal installer framework.
 > This wiki is for *contributors* to Calamares: the
@@ -47,7 +47,7 @@ source code, though, where it is much closer to the things it
 documents. Of particular interest is the `/ci/` directory, which is where things-that-are-not-Calamares-itself but related to Calamares development (like the Continuous Integration scripts, like translation tools, and development documentation) end up.
 
 * [Coding Style](Develop-Code)
-* [Release Process :clipboard:](https://github.com/calamares/calamares/blob/master/ci/RELEASE.md)
+* [Release Process :clipboard:](https://github.com/calamares/calamares/blob/calamares/ci/RELEASE.md)
 
 ## Tester's Guide
 
