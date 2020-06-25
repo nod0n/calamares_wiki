@@ -31,6 +31,7 @@ images, not the people who eventually install those images
 ## How to Help
 
 * Send good [Bug Reports](https://github.com/calamares/calamares/issues)
+  and use [GitHub Labels](Develop-GitHub)
 * Contribute [Translations](https://www.transifex.com/calamares/calamares/)
 * Contribute [Code](https://github.com/calamares/calamares/)
 * Contribute [Documentation](https://github.com/calamares/calamares/wiki/)
