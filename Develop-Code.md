@@ -8,11 +8,19 @@ important thing is to know when you can ignore them.
 ## Licensing
 
 Calamares is released under the terms of the GNU GPL, version 3 or later.
-Every source file must have a license header, with a list of copyright holders and years.
+Every source file must have a license header, with a list of copyright
+holders and years.
 
-Calamares uses [SPDX](https://spdx.org/) identifiers in headers (when they are updated
-in 2020) and tries to follow the [Reuse Software](https://reuse.software/) best-practices
-for license annotation.
+Calamares uses [SPDX](https://spdx.org/) identifiers in headers
+(when they are updated in 2020) and tries to follow the
+[Reuse Software](https://reuse.software/) best-practices
+for license annotation. Each file should start with a list of
+*SPDX-FileCopyrightText* lines, followed by one single
+*SPDX-License-Identifier*. Almost all of Calamares uses
+*GPL-3.0-or-later*.
+
+Don't include a *LICENSE* line -- that was for an earlier revision
+of the spec.
 
 Example:
 ```
@@ -21,11 +29,10 @@ Example:
  *   SPDX-FileCopyrightText: 2013-2014 Random Person <name@example.com>
  *   SPDX-FileCopyrightText: 2010 Someone Else <someone@example.com>
  *   SPDX-License-Identifier: GPL-3.0-or-later
- *   License-Filename: LICENSE
  */
 ```
 
-It is **optional** (but you really shouldn't) to include some more
+It is **optional** (but not recommended ) to include some more
 license text; most of the older Calamares files do that:
 ```
 /*
