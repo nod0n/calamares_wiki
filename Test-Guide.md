@@ -43,6 +43,38 @@ boot a physical machine.
            VBoxManage controlvm <VM_NAME> usbattach <THE_UUID>
       ```
 
+#### KDE Neon VirtualBox Testing
+
+ - Boot a (recent-ish) KDE neon ISO image in VirtualBox
+ - In the live system, get *deploycala* and run it:
+   ```
+   curl -o dp.py https://calamares.io/deploycala.py
+   python3 dp.py -N
+   ```
+   You will need considerable disk space in the live system (i.e. give it
+   lots of RAM for tmpfs) to install all of the build requirements
+   and then build calamares.
+ - After the build, directory `~/calamares` contains the source checkout and
+   `~/calamares/build` contains the build itself. Go into the
+   build directory and build again, to be sure:
+   ```
+   cd ~/calamares/build
+   make -j4
+   ```
+ - Since this is a live system, you can `sudo` to install the
+   newly-built Calamares; on KDE neon, this ends up in
+   "the right places". However, the configuration for Calamares
+   for the live image is **not** in the normal places where Calamares looks.
+   So we need to install, then set environment variables,
+   and then run Calamares
+   with the `-X` flag (to use the XDG variables). It's convenient to
+   use `-D6` as well for extensive debug logging:
+   ```
+   sudo make install
+   export XDG_DATA_DIRS=/usr/share/calamares:/calamares/desktop
+   export XDG_CONFIG_DIRS=/calamares/desktop
+   sudo calamares -X -D6
+   ```
 
 ## Acceptance Test
 
