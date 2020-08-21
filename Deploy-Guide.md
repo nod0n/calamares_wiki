@@ -93,7 +93,7 @@ Some modules also have named widgets, such as the *partition* and *license*
 modules.
 
 For **debugging** purposes and for trying out styles, the *debug window*
-can be used. The *tools* tag contains (as of Calamares 3.2.9) these buttons:
+can be used. The *tools* tab contains (as of Calamares 3.2.9) these buttons:
  - *reload stylesheet* which does what it says: reloads the stylesheet file
    and applies it to the application. This can be used to test changes in
    the stylesheet without re-starting Calamares.
@@ -103,6 +103,10 @@ can be used. The *tools* tag contains (as of Calamares 3.2.9) these buttons:
 
 [stylesheet.qss]: https://github.com/calamares/calamares/blob/calamares/src/branding/default/stylesheet.qss
 [branding.desc]: https://github.com/calamares/calamares/blob/calamares/src/branding/default/branding.desc
+
+## AppImage deployment
+
+See article: [AppImage building](Deploy-AppImage).
 
 ## LUKS deployment
 
