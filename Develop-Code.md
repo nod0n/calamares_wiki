@@ -24,7 +24,7 @@ of the spec.
 
 Example:
 ```
-/* === This file is part of Calamares - <https://github.com/calamares> ===
+/* === This file is part of Calamares - <https://calamares.io> ===
  *
  *   SPDX-FileCopyrightText: 2013-2014 Random Person <name@example.com>
  *   SPDX-FileCopyrightText: 2010 Someone Else <someone@example.com>
@@ -32,8 +32,8 @@ Example:
  */
 ```
 
-It is **optional** (but not recommended ) to include some more
-license text; most of the older Calamares files do that:
+It is **not** recommended (but acceptable if you must) to include some more
+boilerplate license text; most of the older Calamares files do that:
 ```
 /*
  *   Calamares is free software: you can redistribute it and/or modify
@@ -76,6 +76,7 @@ They are not part of the Calamares executable, but are used in the production
 process (e.g. the translation-support scripts). These are liberally licensed since
 they can easily be adopted by other projects.
 
+The `.reuse/dep5` file has another collection of exceptions.
 
 ## C++ Style
 
