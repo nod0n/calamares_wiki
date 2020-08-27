@@ -78,29 +78,6 @@ within the Calamares code.
 With Calamares release 3.2.19 (february 2020) it is much easier
 to test translations without bulding Calamares. See below.
 
-### Before Calamares 3.2.19
-
-If you have a `.ts` file, you can test a new translation inside Calamares,
-but you must be able to compile Calamares (see the
-[developer's guide](Develop-Guide.md)
-) and you must **add** the language to the list that Calamares
-will support.
-
- - Place the new translation file in the directory `lang/`. Usually this
-   means you will add a file called `calamares_`*language*`.ts`.
- - Open `CMakeLists.txt` in a text editor.
- - Scroll down to the section labeled *Transifex (languages) info*,
-   or search for `tx_good`.
- - Add your language code to the list, e.g.
-   ```
-   set( _tx_good MyNewLanguage es sq he hu )
-   ```
- - Rebuild Calamares.
- - Run Calamares and pick the language from the drop-down, or set the *LANG*
-   environment variable to test if Calamares starts up natively.
-
-### Since Calamares 3.2.19
-
 If you have a `.ts` file, you can test an **existing** translation
 (updates, modifications) with Calamares. You will need the
 Qt translation tools installed -- in particular, you need to be able
@@ -135,10 +112,47 @@ You can deploy the file in three different ways:
    settings and modules from the current directory. This is intended for
    developers.
 
+## Timezone Translations
+
+The global list of timezones is made of names like *Europe/Amsterdam*,
+*Africa/Harare* and *Asia/Tokyo* -- those are regions and cities.
+The timezone page (generally part of the *locale* module) displays
+these names. It is possible to translate those names for local
+use (e.g. the zone "Berlin" is called "Berlijn" in Dutch, because
+that is the name of the city in Dutch).
+
+The regions and city names are **not** in Transifex, because it would
+add about 600 names to the translation load, and it's not entirely
+clear how many languages would even use the option of translating
+or transliterating region and zone names.
+
+To translate region and timezone names:
+
+- Take [this source file](https://github.com/calamares/calamares/blob/calamares/lang/tz_en.ts)
+  with the region and zone names.
+- Enter the translations by hand in that file, putting the translation in
+  the `<translation>` element and removing the `type` attribute; for instance,
+  if transliterating [Dushanbe](https://en.wikipedia.org/wiki/Dushanbe)
+  into Cyrillic:
+  ```
+    <message>
+        <location filename="../src/libcalamares/locale/ZoneData_p.cxxtr" line="176"/>
+        <source>Dushanbe</source>
+        <comment>tz_names</comment>
+        <translation>Душанбе</translation>
+    </message>
+  ```
+- Add that file with translations as `lang/tz_<lang>.ts` where
+  *lang* is the language code, and submit the changed file to
+  the Calamares source repository.
+
+
+
 ## Special Cases
 
  - Esperanto was not available as a language in Qt prior to Qt 5.12.2.
    To use Esperanto you need a sufficiently new Qt version.
+ - Interlingue exists as a translation, but no version of Qt supports it.
  - Serbian is available both in Cyrillic and Latin spellings,
    but the language name for the Latin spelling is non-standard
    in Calamares (for historical reasons), *sr@latn*.
