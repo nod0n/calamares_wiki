@@ -40,33 +40,45 @@ A message on Transifex via their usual
 
 ## New Languages
 
-See [getting started](#GettingStarted) for information on how to begin.
-Just poke the Calamares team -- via IRC or Transifex to GitHub issue --
-to get the team started.
-
 A new translation is added to the Calamares source when the team is created,
 but the language is not enabled for **use** in Calamares until
-some strings have been translated. There are automatic thresholds
+some strings have been translated.
+
+> You can tell that the language has been imported from Transifex
+> at least once when there is a `calamares_`*lang*`.ts` file
+> in the [translations directory](/calamares/calamares/tree/calamares/lang).
+
+There are automatic thresholds
 for use: you must reach 5% translation (about 30 strings)
-before the language will be enabled in a Calamares release.
+before the language will be enabled for users in a Calamares release.
 The list of languages is updated with each Calamares release,
 or give a shout on IRC when things have been updated.
 
-The **first strings** to translate are the `.desktop` file and a few
-common Calamares modules.
-Use Transifex's filters to pick strings from those modules:
-view strings in the *calamares* resource,
-then click *more* in the tab-bar of filters along the top of the list,
-and then click *occurrence* and enter a filter-string from the list below.
-These strings show up early in the application,
-so that it is easy to see if the language works:
+The **first strings** to translate are these:
 
+ - Some common user-interface strings like *back*, *next*, *quit*,
+   in the [Calamares resource](https://www.transifex.com/calamares/calamares/viewstrings/#en/calamares/36497580?q=text%3Anext).
+   These strings are **always** used so it's nice to see immediate results.
+ - The `.desktop` file is just 4 strings with the name of the application.
+   These strings live in the [fdo](https://www.transifex.com/calamares/calamares/viewstrings/#en/fdo/116533957)
+   resource on Transifex.
+ - Some common Calamares modules. It's a good idea to start with
+   some common modules,
+   because they are almost always used and you can configure
+   a "harmless" Calamares with just those modules.
+   The [welcome message](https://www.transifex.com/calamares/calamares/viewstrings/#en/calamares/293047765?q=key%3A%22welcome%22)
+   has a handful of variations.
+
+To translate specific modules, use Transifex's filters to pick strings from those modules:
+translate strings in the *calamares* resource,
+then click *more* in the tab-bar of filters along the top of the list,
+and then click *occurrence* and enter a module name from the list below.
+ -   *ViewManager* (not a module, but contains most of the common strings)
  -   *Welcome*
- -   *Debug*
+ -   *Summary*
  -   *Finished*
 
-These modules are generally enabled in every Calamares setup, so
-they are highly visible at the beginning and end of using Calamares.
+It is safe to ignore the *dummypythonqt* resource entirely.
 
 ## Testing New Languages
 
@@ -75,12 +87,10 @@ is at 0% completion, not that the translation itself is bad. As the translation
 is completed, the language will be moved from one completion-status to another
 within the Calamares code.
 
-With Calamares release 3.2.19 (february 2020) it is much easier
-to test translations without bulding Calamares. See below.
-
-If you have a `.ts` file, you can test an **existing** translation
-(updates, modifications) with Calamares. You will need the
-Qt translation tools installed -- in particular, you need to be able
+If you have Calamares installed, you can test new translations (as long as
+the language is enabled for users, e.g. isn't on the "bad" list) without
+building Calamares. You will need the `.ts` file for the translation, and
+the Qt translation tools installed -- in particular, you need to be able
 to run `lrelease` (or `lrelease-qt5`) to build a `.qm` file.
 
 In general:
