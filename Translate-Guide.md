@@ -28,7 +28,7 @@ know you want to join.
 A message on Transifex via their usual
 [request-new-language workflow](https://www.transifex.com/calamares/calamares/languages/) will also work.
 
-## Translation Guidelines
+### Translation Guidelines
 
  - Just do it. You do not need permission to write translations for Calamares,
    and we are happy with each new language.
@@ -38,7 +38,7 @@ A message on Transifex via their usual
    For Indic languages (Assamese, Hindi and Malayalam and others)
    the keyboard shortcuts are generally left in Latin-1.
 
-## New Languages
+### New Languages
 
 A new translation is added to the Calamares source when the team is created,
 but the language is not enabled for **use** in Calamares until
@@ -80,7 +80,7 @@ and then click *occurrence* and enter a module name from the list below.
 
 It is safe to ignore the *dummypythonqt* resource entirely.
 
-## Testing New Languages
+### Testing New Languages
 
 A new language is added to the *bad* list. That means that the translation
 is at 0% completion, not that the translation itself is bad. As the translation
@@ -122,7 +122,17 @@ You can deploy the file in three different ways:
    settings and modules from the current directory. This is intended for
    developers.
 
-## Timezone Translations
+
+## Special Cases
+
+> Calamares enables the translation of things that are normally
+> not translated: timezones and keyboard layouts. These translations
+> work outside the normal translation workflow because they would
+> add significant translation work for all translators, with about 1300
+> names and places. Therefore the translations are left for manual
+> translation.
+
+### Timezone Translations
 
 The global list of timezones is made of names like *Europe/Amsterdam*,
 *Africa/Harare* and *Asia/Tokyo* -- those are regions and cities.
@@ -156,9 +166,28 @@ To translate region and timezone names:
   *lang* is the language code, and submit the changed file to
   the Calamares source repository.
 
+Alternately, see issue #1506 and attach the file as a comment there.
 
+### Keyboard Translations
 
-## Special Cases
+Like timezones, keyboard models, layouts and variants are defined
+outside of Calamares but can be translated for use within Calamares.
+The keyboard names are displayed in the keyboard module and include
+language-specific layouts and language-specific variants.
+
+To translate keyboard model, layout and variant names:
+
+- Take [this source file](https://github.com/calamares/calamares/blob/calamares/lang/kb_en.ts)
+  with the names.
+- Enter the translations by hand in that file, putting the translation in
+  the `<translation>` element and removing the `type` attribute.
+- Add that file with translations as `lang/kb_<lang>.ts` where
+  *lang* is the language code, and submit the changed file to
+  the Calamares source repository.
+
+Alternately, see issue #1515 and attach the file as a comment there.
+
+## Special Languages
 
  - Esperanto was not available as a language in Qt prior to Qt 5.12.2.
    To use Esperanto you need a sufficiently new Qt version.
