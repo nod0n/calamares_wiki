@@ -80,9 +80,8 @@ You can help by [translating Calamares into your own language](https://www.trans
 There are some general translation guidelines in the
 [translator's guide](Translate-Guide).
 
-## Code of Conduct
 
-(*draft 2018-05-28*)
+## Code of Conduct
 
 The Calamares community -- of developers, translators, and downstream (distro) users --
 aims to be courteous, professional, and inclusive. Harrassment, discriminatory
