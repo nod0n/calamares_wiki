@@ -58,6 +58,43 @@ interesting layouts.
 
 What part of the disk do you want to overwrite?
 
+#### Automatic partitioning
+
+If you choose an automatic partitioning option, you will have the option of
+encrypting your new installation. You will have to enter your a passphrase
+two times. An encrypted system with a week passphrase, isn't very secure and
+therefore better choose a good passphrase.
+
+##### Replace a partition
+
+This options is not always available. In general you can replace an existing
+installation, but only the existing partition will be replaced. You can keep
+any other operating system that is not selected for replacement on the same
+disk.
+
+##### Erase disk
+
+Erase the complete disk and replace it with your new installation. In this
+mode all prior installed operating systems on the selected disk will be
+deleted and you new operating system will be installed.
+
+#### Manual partitioning
+
+It is up to you how you partition your new installation. You will need some
+knowledge about the boot process to successfully install the system.
+
+You will have to choose on which device you would like to install your
+operating system. If you are on a somewhat modern computer it is likely that
+it has EFI. With EFI you will need to use an EFI partition. If you are using
+GPT on BIOS you will need a "grub bios" partition.
+
+##### Encrypted partitions
+
+You can create partitions and select the size, file system, mountpoint and
+flags. If you enable the "Encrypt" checkbox, you have to enter a passphrase
+twice and the partition will be encrypted with luks. You filesystem will be
+stored in the luks container. This is specially useful, if you would like to
+encrypt your system, but you don't like the default filesystem (ext4).
 
 ### Users
 
@@ -73,7 +110,7 @@ This is one more chance to back out before anything irrevocable happens.
 ### Install
 
 When you reach this step, Calamares does the **actual** work of doing
-the installation. Since this can take a long time, you can watch a 
+the installation. Since this can take a long time, you can watch a
 slideshow here. Some distributions even let you play a game while you wait!
 
 
